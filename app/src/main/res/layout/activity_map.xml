@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_light"
+    tools:context=".ui.MapActivity">
+
+    <!-- Fundo do Mapa -->
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/mapFragment"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout="@layout/placeholder_map" />
+
+
+    <!-- Placeholder de imagem  -->
+    <!--
+    <ImageView
+        android:id="@+id/backgroundImage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/map_background_placeholder" />
+    -->
+    <!-- Adicione imagem em drawable/ -->
+
+    <!-- Header (fixo no topo) -->
+    <LinearLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="@color/background_light"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:padding="16dp"
+        android:elevation="8dp">
+
+        <!-- Botão Voltar -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonBack"
+            style="@style/Widget.Material3.Button.IconButton"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            app:icon="@drawable/ic_arrow_back"
+            app:iconTint="?attr/colorOnSurface"
+            app:backgroundTint="@color/background_light"
+            android:contentDescription="@string/desc_back" />
+
+        <!-- Título -->
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/app_name"
+            android:textAppearance="?attr/textAppearanceHeadlineSmall"
+            android:textStyle="bold"
+            android:textColor="?attr/colorOnSurface" />
+
+        <!-- Espaço vazio à direita -->
+        <View
+            android:layout_width="40dp"
+            android:layout_height="40dp" />
+    </LinearLayout>
+
+    <!-- Barra de Busca -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/searchLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/header"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+        app:boxStrokeColor="@color/primary"
+        app:startIconDrawable="@drawable/ic_search"
+        app:startIconTint="?attr/colorOnSurfaceVariant"
+        app:hintTextColor="?attr/colorOnSurfaceVariant">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editSearch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@null"
+            android:hint="@string/search_recycling_points"
+            android:inputType="text"
+            android:textColor="?attr/colorOnSurface" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Controles de Zoom e Localização -->
+    <!-- Acima do bottom sheet -->
+    <LinearLayout
+        android:id="@+id/zoomControls"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="200dp"
+        android:orientation="vertical"
+        android:gravity="end">
+
+        <!-- Botões de Zoom -->
+        <LinearLayout
+            android:layout_width="48dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/background_light"
+            android:elevation="8dp"
+            app:shapeAppearanceOverlay="@style/RoundedCorners">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonZoomIn"
+                style="@style/Widget.Material3.Button.IconButton"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                app:icon="@drawable/ic_add"
+                app:iconTint="?attr/colorOnSurface"
+                app:backgroundTint="@color/background_light"
+                android:contentDescription="@string/desc_zoom_in" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonZoomOut"
+                style="@style/Widget.Material3.Button.IconButton"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                app:icon="@drawable/ic_remove"
+                app:iconTint="?attr/colorOnSurface"
+                app:backgroundTint="@color/background_light"
+                android:contentDescription="@string/desc_zoom_out" />
+        </LinearLayout>
+
+        <!-- Botão de Localização -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonLocation"
+            style="@style/Widget.Material3.Button.IconButton"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="8dp"
+            android:elevation="8dp"
+            app:icon="@drawable/ic_near_me"
+            app:iconTint="?attr/colorOnSurface"
+            app:backgroundTint="@color/background_light"
+            app:shapeAppearanceOverlay="@style/RoundedCorners"
+            android:contentDescription="@string/desc_center_on_my_location" />
+    </LinearLayout>
+
+    <!-- Bottom Sheet: Painel de Filtro -->
+    <LinearLayout
+        android:id="@+id/bottomSheet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical"
+        android:background="@color/background_light"
+        android:elevation="16dp"
+        app:behavior_hideable="false"
+        app:behavior_peekHeight="200dp"
+        app:behavior_skipCollapsed="false"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+        <!-- Drag Handle -->
+        <View
+            android:layout_width="48dp"
+            android:layout_height="4dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/drag_handle_shape" />
+
+        <!-- Conteúdo do Bottom Sheet -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/filter"
+                android:textAppearance="?attr/textAppearanceHeadlineSmall"
+                android:textStyle="bold"
+                android:textColor="?attr/colorOnSurface"
+                android:layout_marginBottom="12dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="start"
+                android:layout_marginBottom="16dp">
+
+                <!-- Botão "All" -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/buttonFilterAll"
+                    style="@style/Widget.Material3.Button.OutlinedButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:layout_marginEnd="8dp"
+                    app:icon="@drawable/ic_expand_more"
+                    app:iconTint="?attr/colorOnSurface"
+                    app:backgroundTint="@color/primary_light"
+                    android:text="@string/all" />
+
+                <!-- Botão "Plastic" -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/buttonFilterPlastic"
+                    style="@style/Widget.Material3.Button.OutlinedButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:layout_marginEnd="8dp"
+                    app:backgroundTint="@color/background_light"
+                    app:strokeColor="?attr/colorOnSurfaceVariant"
+                    android:text="@string/plastic" />
+
+                <!-- Botão "Glass" -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/buttonFilterGlass"
+                    style="@style/Widget.Material3.Button.OutlinedButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    app:backgroundTint="@color/background_light"
+                    app:strokeColor="?attr/colorOnSurfaceVariant"
+                    android:text="@string/glass" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Bottom Navigation -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/bottomSheet"
+        android:layout_alignParentBottom="true"
+        app:menu="@menu/bottom_nav_menu"
+        app:itemRippleColor="@color/primary_light"
+        app:labelVisibilityMode="labeled"
+        app:itemTextColor="@color/selector_nav_text"
+        app:itemIconTint="@color/selector_nav_icon"
+        app:selectedItemId="@id/nav_map" />
+</RelativeLayout>

@@ -1,0 +1,12 @@
+<resources>
+    <style name="RoundedCorners" parent="ShapeAppearance.Material3.Corner.None">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <style name="CustomRadioButton" parent="Widget.Material3.CompoundButton.RadioButton">
+        <item name="android:button">@null</item>
+        <item name="android:drawableTop">@drawable/ic_recycling</item>
+        <item name="android:gravity">center</item>
+    </style>
+</resources>

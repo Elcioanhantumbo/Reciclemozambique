@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_light"
+    tools:context=".ui.ScheduleCollectionActivity">
+
+    <!-- Header -->
+    <LinearLayout
+        android:id="@+id/header"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:padding="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <!-- Botão Voltar -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonBack"
+            style="@style/Widget.Material3.Button.IconButton"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            app:icon="@drawable/ic_arrow_back"
+            app:iconSize="24dp"
+            app:iconTint="?attr/colorOnSurface"
+            app:backgroundTint="@null"
+            android:contentDescription="@string/back" />
+
+        <!-- Título -->
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/schedule_collection_title"
+            android:textAppearance="?attr/textAppearanceHeadlineMedium"
+            android:textStyle="bold"
+            android:textColor="?attr/colorOnSurface" />
+
+    </LinearLayout>
+
+    <!-- Indicador de Progresso (3 barras horizontais) -->
+    <LinearLayout
+        android:id="@+id/progressIndicator"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/header">
+
+        <!-- Passo 1: Cheio (primary) -->
+        <View
+            android:layout_width="32dp"
+            android:layout_height="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@color/primary"
+            android:background="@drawable/progress_step_filled" />  <!-- Shape arredondado -->
+
+        <!-- Passo 2: Semi (primary/20) -->
+        <View
+            android:layout_width="32dp"
+            android:layout_height="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@color/primary_light" />
+
+        <!-- Passo 3: Semi (primary/20) -->
+        <View
+            android:layout_width="32dp"
+            android:layout_height="8dp"
+            android:background="@color/primary_light" />
+
+    </LinearLayout>
+
+    <!-- Conteúdo Principal -->
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="24dp"
+        android:padding="16dp"
+        app:layout_constraintBottom_toTopOf="@id/buttonNext"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/progressIndicator">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Título da Seção -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/select_material_type"
+                android:textAppearance="?attr/textAppearanceHeadlineSmall"
+                android:textStyle="bold"
+                android:textColor="?attr/colorOnSurface"
+                android:layout_marginBottom="16dp" />
+
+            <!-- RadioGroup para Materiais (Grid 2 colunas) -->
+            <RadioGroup
+                android:id="@+id/radioGroupMaterials"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!-- Linha 1: Plastic e Glass -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="16dp">
+
+                    <!-- Plastic -->
+                    <RadioButton
+                        android:id="@+id/radioPlastic"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="8dp"
+                        android:buttonTint="@color/selector_radio_tint"
+                        android:background="@drawable/material_card_selector"
+                        android:gravity="center"
+                        android:checked="false"
+                        android:text="@string/plastic"
+                        android:textAppearance="?attr/textAppearanceBodyMedium"
+                        android:textStyle="medium"
+                        android:textColor="?attr/colorOnSurface"
+                        app:icon="@drawable/ic_recycling"
+                        app:iconTint="@color/primary"
+                        app:iconSize="48dp" />
+
+                    <!-- Glass -->
+                    <RadioButton
+                        android:id="@+id/radioGlass"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="8dp"
+                        android:buttonTint="@color/selector_radio_tint"
+                        android:background="@drawable/material_card_selector"
+                        android:gravity="center"
+                        android:checked="false"
+                        android:text="@string/glass"
+                        android:textAppearance="?attr/textAppearanceBodyMedium"
+                        android:textStyle="medium"
+                        android:textColor="?attr/colorOnSurface"
+                        app:icon="@drawable/ic_liquor"
+                        app:iconTint="@color/primary"
+                        app:iconSize="48dp" />
+
+                </LinearLayout>
+
+                <!-- Linha 2: Paper (pré-selecionado) e Metal -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="16dp">
+
+                    <!-- Paper -->
+                    <RadioButton
+                        android:id="@+id/radioPaper"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="8dp"
+                        android:buttonTint="@color/selector_radio_tint"
+                        android:background="@drawable/material_card_selector"
+                        android:gravity="center"
+                        android:checked="true"
+                        android:text="@string/paper"
+                        android:textAppearance="?attr/textAppearanceBodyMedium"
+                        android:textStyle="medium"
+                        android:textColor="?attr/colorOnSurface"
+                        app:icon="@drawable/ic_description"
+                        app:iconTint="@color/primary"
+                        app:iconSize="48dp" />
+
+                    <!-- Metal -->
+                    <RadioButton
+                        android:id="@+id/radioMetal"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="8dp"
+                        android:buttonTint="@color/selector_radio_tint"
+                        android:background="@drawable/material_card_selector"
+                        android:gravity="center"
+                        android:checked="false"
+                        android:text="@string/metal"
+                        android:textAppearance="?attr/textAppearanceBodyMedium"
+                        android:textStyle="medium"
+                        android:textColor="?attr/colorOnSurface"
+                        app:icon="@drawable/ic_recycle"
+                        app:iconTint="@color/primary"
+                        app:iconSize="48dp" />
+
+                </LinearLayout>
+
+                <!-- Linha 3: Electronics e Other -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <!-- Electronics -->
+                    <RadioButton
+                        android:id="@+id/radioElectronics"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="8dp"
+                        android:buttonTint="@color/selector_radio_tint"
+                        android:background="@drawable/material_card_selector"
+                        android:gravity="center"
+                        android:checked="false"
+                        android:text="@string/electronics"
+                        android:textAppearance="?attr/textAppearanceBodyMedium"
+                        android:textStyle="medium"
+                        android:textColor="?attr/colorOnSurface"
+                        app:icon="@drawable/ic_cable"
+                        app:iconTint="@color/primary"
+                        app:iconSize="48dp" />
+
+                    <!-- Other -->
+                    <RadioButton
+                        android:id="@+id/radioOther"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="8dp"
+                        android:buttonTint="@color/selector_radio_tint"
+                        android:background="@drawable/material_card_selector"
+                        android:gravity="center"
+                        android:checked="false"
+                        android:text="@string/other"
+                        android:textAppearance="?attr/textAppearanceBodyMedium"
+                        android:textStyle="medium"
+                        android:textColor="?attr/colorOnSurface"
+                        app:icon="@drawable/ic_more_horiz"
+                        app:iconTint="@color/primary"
+                        app:iconSize="48dp" />
+
+                </LinearLayout>
+
+            </RadioGroup>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Botão Next (bottom fixed) -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonNext"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:layout_margin="16dp"
+        android:text="@string/next"
+        android:textAppearance="?attr/textAppearanceHeadlineSmall"
+        android:textStyle="bold"
+        android:textColor="@color/background_dark"
+        app:backgroundTint="@color/primary"
+        app:cornerRadius="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

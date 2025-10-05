@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <!-- Cores do seu tema -->
+    <color name="primary">#39E079</color>
+    <color name="background_light">#f6f8f7</color>
+    <color name="background_dark">#122017</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="placeholder_light">#7f7f7f</color> <!-- 50% de opacidade do preto -->
+    <color name="placeholder_dark">#80FFFFFF</color> <!-- 50% de opacidade do branco -->
+    <color name="divider_light">#639e5a</color> <!-- primary/20 aproximado -->
+    <color name="divider_dark">#8039E079</color> <!-- primary/30 aproximado -->
+    <color name="button_social_light">#62d68f</color> <!-- primary/10 aproximado -->
+    <color name="button_social_dark">#8039E079</color> <!-- primary/20 aproximado -->
+    <color name="facebook_blue">#1877F2</color>
+    <color name="text_hint_light">#BDBDBD</color>
+    <color name="primary_light">#62d68f</color>
+    <color name="onSurfaceVariant">#49454F</color>
+    <color name="card_light">#ffffff</color>
+    <color name="card_dark">#1e2a1e</color>
+    <color name="border_light">#e3e3e3</color>
+    <color name="border_dark">#333333</color>
+    <color name="foreground_light">#112112</color>
+    <color name="foreground_dark">#f6f8f6</color>
+    <color name="white_alpha_05">#0DFFFFFF</color>  <!-- Branco 5% opacidade -->
+    <color name="white_alpha_10">#1AFFFFFF</color>  <!-- Para progresso bg -->
+
+    <!-- Outras cores padrão do Android Studio podem estar aqui -->
+</resources>
