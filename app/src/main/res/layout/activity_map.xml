@@ -245,6 +245,5 @@
         app:itemRippleColor="@color/primary_light"
         app:labelVisibilityMode="labeled"
         app:itemTextColor="@color/selector_nav_text"
-        app:itemIconTint="@color/selector_nav_icon"
-        app:selectedItemId="@id/nav_map" />
+        app:itemIconTint="@color/selector_nav_icon" />
 </RelativeLayout>

@@ -1,4 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="app_name">RecicleMozambique</string>
     <string name="logo_desc">Recycle Mozambique Logo</string>
     <string name="login_title">Log in to your account</string>
@@ -14,10 +16,10 @@
     <string name="name">Name</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
-    <string name="user_type">User  Type</string>
-    <string name="terms_agree">I agree to the <u>Terms of Use</u> and <u>Privacy Policy</u></string>
+    <string name="user_type">User Type</string>
+    <string name="terms_agree">I agree to the Terms of Use and Privacy Policy</string>
     <string name="register">Register</string>
-    <string name="already_have_account">Already have an account? <u>Sign in</u></string>
+    <string name="already_have_account">Already have an account? Sign in</string>
 
     <string-array name="user_types">
         <item>Cliente</item>
@@ -25,13 +27,13 @@
         <item>Admin</item>
     </string-array>
 
-    <!-- Home/Dashboard strings -->
-    <string name="greeting">Olá, Sofia! Você já reciclou 12 kg este mês</string>  <!-- Personalize dinamicamente no código -->
+    <!-- Home/Dashboard -->
+    <string name="greeting">Ola, Sofia! Voce ja reciclou 12 kg este mes</string>
     <string name="points_title">Pontos verdes acumulados</string>
     <string name="highlights_title">Destaques do dia</string>
-    <string name="next_collection">Próxima coleta</string>
+    <string name="next_collection">Proxima coleta</string>
     <string name="next_collection_title">No seu bairro</string>
-    <string name="next_collection_time">Amanhã, 10h - 12h</string>
+    <string name="next_collection_time">Amanha, 10h - 12h</string>
     <string name="tip_of_day">Dica do dia</string>
     <string name="recycling">Reciclagem</string>
     <string name="how_to_separate_waste">Como separar o lixo corretamente</string>
@@ -42,7 +44,7 @@
     <string name="rewards">Recompensas</string>
     <string name="profile">Perfil</string>
 
-    <!-- Map strings -->
+    <!-- Map -->
     <string name="search_recycling_points">Search for recycling points</string>
     <string name="filter">Filter</string>
     <string name="all">All</string>
@@ -52,33 +54,33 @@
     <string name="desc_zoom_in">Aumentar o zoom</string>
     <string name="desc_zoom_out">Diminuir o zoom</string>
     <string name="desc_center_on_my_location">Centralizar no mapa</string>
+    <string name="fmd_good">Mapa</string>
 
-    <!-- Ícones e navegação (reutilize da home, adicione se necessário) -->
-    <string name="fmd_good">Mapa</string>  <!-- Para ícone de localização -->
-
-    <!-- Guide strings -->
-    <string name="guide_title">Dicionário de Resíduos</string>
-    <string name="search_waste_example">Pesquise por \'garrafa PET\'</string>
+    <!-- Guide -->
+    <string name="guide_title">Dicionario de Residuos</string>
+    <string name="search_waste_example">Pesquise por garrafa PET</string>
     <string name="pet_bottle">Garrafa PET</string>
-    <string name="pet_description">Embalagens de produtos de limpeza, sacolas plásticas</string>
-    <string name="disposal_instructions">Instruções de Descarte</string>
-    <string name="nearby_collection_points">Pontos de Coleta Próximos</string>
+    <string name="pet_description">Embalagens de produtos de limpeza, sacolas plasticas</string>
+    <string name="disposal_instructions">Instrucoes de Descarte</string>
+    <string name="nearby_collection_points">Pontos de Coleta Proximos</string>
     <string name="ecoponto_central">EcoPonto Central</string>
     <string name="recicla_mais">Recicla Mais</string>
     <string name="coleta_consciente">Coleta Consciente</string>
-    <string name="quick_tips">Dicas Rápidas</string>
+    <string name="quick_tips">Dicas Rapidas</string>
     <string name="tip_wash_packaging">Lave embalagens antes de descartar</string>
-    <string name="tip_cooking_oil">Óleo de cozinha deve ser entregue em pontos específicos 🍳</string>
-    <string name="tip_separate_organics">Separe orgânicos de recicláveis</string>
+    <string name="tip_remove_caps">Remova tampas e rotulos antes de reciclar</string>
+    <string name="tip_crush_bottles">Esmague as garrafas para economizar espaco</string>
+    <string name="tip_cooking_oil">Oleo de cozinha deve ser entregue em pontos especificos</string>
+    <string name="tip_separate_organics">Separe organicos de reciclaveis</string>
     <string name="back_button_description">Voltar</string>
-    <string name="instructions_button_description">Ver instruções de descarte</string>
-    <string name="location_icon_description">Ícone de localização do ponto de coleta</string>
+    <string name="instructions_button_description">Ver instrucoes de descarte</string>
+    <string name="location_icon_description">Icone de localizacao do ponto de coleta</string>
     <string name="chevron_description">Abrir detalhes do ponto de coleta</string>
     <string name="tip_image_description">Imagem ilustrativa da dica de reciclagem</string>
     <string name="navigate">Navigate</string>
-    <string name="location_icon">Ícone de localização</string>
+    <string name="location_icon">Icone de localizacao</string>
 
-    <!-- Schedule Collection strings -->
+    <!-- Schedule Collection -->
     <string name="schedule_collection_title">Schedule Collection</string>
     <string name="select_material_type">Select Material Type</string>
     <string name="paper">Paper</string>
@@ -87,27 +89,23 @@
     <string name="other">Other</string>
     <string name="next">Next</string>
 
-    <!-- Rewards strings -->
-    <string name="rewards_title">Histórico de Pontos</string>
+    <!-- Rewards -->
+    <string name="rewards_title">Historico de Pontos</string>
     <string name="total_points_title">Total de Pontos</string>
     <string name="total_points_value">1200 pontos</string>
-    <string name="history_title">Histórico</string>
-    <string name="history_plastic">+10 pontos por descarte de plástico</string>
+    <string name="history_title">Historico</string>
+    <string name="history_plastic">+10 pontos por descarte de plastico</string>
     <string name="history_date_1">20 de Julho</string>
-    <!-- Adicione para outros: <string name="history_glass">+5 pontos por descarte de vidro</string>, etc. -->
     <string name="badges_title">Badges</string>
-    <string name="badge_level_1">Nível 1</string>
+    <string name="badge_level_1">Nivel 1</string>
     <string name="badge_name_1">Iniciante Verde</string>
     <string name="badge_desc_1">Descarte 5 vezes</string>
     <string name="view_details">Ver Detalhes</string>
-    <!-- Repita para badge 2: Herói do Bairro, Descarte 50 vezes -->
-    <string name="next_badge">Próximo Badge: Campeão da Cidade</string>
+    <string name="next_badge">Proximo Badge: Campeao da Cidade</string>
     <string name="rewards_section_title">Recompensas</string>
     <string name="reward_title">Desconto de 10% em lojas locais parceiras</string>
     <string name="reward_desc">Use seus pontos para obter descontos</string>
     <string name="redeem">Resgatar</string>
     <string name="desc_back_button">Voltar</string>
-
-
 
 </resources>

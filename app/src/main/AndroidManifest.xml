@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <!-- Necessário para carregar imagens remotas (Glide) -->
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -11,6 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.RecicleMozambique">
+
+        <!-- Launcher único: Login -->
         <activity
             android:name=".auth.LoginActivity"
             android:exported="true"
@@ -20,35 +25,49 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".auth.RegisterActivity"
+            android:exported="false"
+            android:theme="@style/Theme.RecicleMozambique" />
+
+        <!-- Telas do app -->
+        <activity
+            android:name=".ui.GuideActivity"
+            android:exported="false"
             android:theme="@style/Theme.RecicleMozambique" />
 
         <activity
-            android:name=".ui.GuideActivity"
-            android:theme="@style/Theme.RecicleMozambique"
-            android:exported="false" />  <!-- Não launcher; acessível via bottom nav -->
+            android:name=".ui.RewardsActivity"
+            android:exported="false"
+            android:theme="@style/Theme.RecicleMozambique" />
 
         <activity
             android:name=".ui.ScheduleCollectionActivity"
-            android:theme="@style/Theme.RecicleMozambique"
-            android:exported="false" />  <!-- Não launcher; acessível via Agenda -->
+            android:exported="false"
+            android:theme="@style/Theme.RecicleMozambique" />
 
+        <!-- Nova tela de data/horário -->
         <activity
-            android:name=".ui.RewardsActivity"
-            android:theme="@style/Theme.RecicleMozambique"
-            android:exported="false" />  <!-- Acessível via bottom nav -->
+            android:name=".ui.ScheduleDateActivity"
+            android:exported="false"
+            android:theme="@style/Theme.RecicleMozambique" />
 
+        <!-- Opcional: declare se existirem e forem abertas por Intent -->
+        <activity
+            android:name=".ui.MapActivity"
+            android:exported="false"
+            android:theme="@style/Theme.RecicleMozambique" />
+        <activity
+            android:name=".ui.AgendaActivity"
+            android:exported="false"
+            android:theme="@style/Theme.RecicleMozambique" />
+
+        <!-- Removido o segundo launcher. Se ainda precisar de MainActivity, mantenha sem intent-filter -->
         <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="false"
+            android:theme="@style/Theme.RecicleMozambique" />
 
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
     </application>
-
 </manifest>

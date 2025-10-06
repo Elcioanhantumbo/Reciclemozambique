@@ -17,7 +17,6 @@
         android:padding="16dp"
         android:background="@color/background_dark">
 
-        <!-- Botão Voltar -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonBack"
             style="@style/Widget.Material3.Button.IconButton"
@@ -28,7 +27,6 @@
             app:backgroundTint="@null"
             android:contentDescription="@string/desc_back" />
 
-        <!-- Título -->
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -38,10 +36,9 @@
             android:textAppearance="?attr/textAppearanceHeadlineSmall"
             android:textStyle="bold"
             android:textColor="@android:color/white" />
-
     </LinearLayout>
 
-    <!-- Conteúdo Principal (rolável) -->
+    <!-- Conteúdo Principal -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -70,7 +67,6 @@
                     android:gravity="center_vertical"
                     android:padding="16dp">
 
-                    <!-- Ícone -->
                     <com.google.android.material.card.MaterialCardView
                         android:layout_width="48dp"
                         android:layout_height="48dp"
@@ -83,10 +79,8 @@
                             android:layout_gravity="center"
                             android:src="@drawable/ic_toll"
                             app:tint="@color/primary" />
-
                     </com.google.android.material.card.MaterialCardView>
 
-                    <!-- Textos -->
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -99,8 +93,7 @@
                             android:layout_height="wrap_content"
                             android:text="@string/total_points_title"
                             android:textAppearance="?attr/textAppearanceBodyMedium"
-                            android:textStyle="bold
-"
+                            android:textStyle="bold"
                             android:textColor="@android:color/white"
                             android:alpha="0.9" />
 
@@ -109,15 +102,12 @@
                             android:layout_height="wrap_content"
                             android:text="@string/total_points_value"
                             android:textAppearance="?attr/textAppearanceBodySmall"
-                            android:textStyle="normal"
                             android:textColor="@color/primary" />
-
                     </LinearLayout>
-
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
-            <!-- Seção Histórico -->
+            <!-- Histórico -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -127,14 +117,12 @@
                 android:textColor="@android:color/white"
                 android:layout_marginBottom="12dp" />
 
-            <!-- Lista de Histórico (estática; use RecyclerView para dinâmico) -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_marginBottom="24dp">
 
-                <!-- Item 1: +10 pontos plástico -->
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -149,7 +137,6 @@
                         android:gravity="center_vertical"
                         android:padding="12dp">
 
-                        <!-- Ícone -->
                         <com.google.android.material.card.MaterialCardView
                             android:layout_width="40dp"
                             android:layout_height="40dp"
@@ -162,10 +149,8 @@
                                 android:layout_gravity="center"
                                 android:src="@drawable/ic_recycling"
                                 app:tint="@color/primary" />
-
                         </com.google.android.material.card.MaterialCardView>
 
-                        <!-- Detalhes -->
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -188,18 +173,12 @@
                                 android:text="@string/history_date_1"
                                 android:textAppearance="?attr/textAppearanceBodySmall"
                                 android:textColor="@color/primary" />
-
                         </LinearLayout>
-
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
-
-                <!-- Repita para Item 2 (+5 vidro, 15 Jul) e Item 3 (+15 papel, 10 Jul) -->
-                <!-- ... (código similar, mude textos e datas) ... -->
-
             </LinearLayout>
 
-            <!-- Seção Badges -->
+            <!-- Badges -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -209,7 +188,7 @@
                 android:textColor="@android:color/white"
                 android:layout_marginBottom="12dp" />
 
-            <!-- Badge 1: Iniciante Verde -->
+            <!-- Badge 1 -->
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -234,7 +213,6 @@
                             android:layout_height="wrap_content"
                             android:text="@string/badge_level_1"
                             android:textAppearance="?attr/textAppearanceBodySmall"
-                            android:textStyle="normal"
                             android:textColor="@color/primary"
                             android:layout_marginBottom="4dp" />
 
@@ -252,7 +230,6 @@
                             android:layout_height="wrap_content"
                             android:text="@string/badge_desc_1"
                             android:textAppearance="?attr/textAppearanceBodySmall"
-                            android:textStyle="normal"
                             android:textColor="@color/primary" />
 
                         <com.google.android.material.button.MaterialButton
@@ -264,10 +241,8 @@
                             android:text="@string/view_details"
                             app:backgroundTint="@color/primary_light"
                             android:textColor="@android:color/white" />
-
                     </LinearLayout>
 
-                    <!-- Imagem do Badge -->
                     <ImageView
                         android:id="@+id/imageBadge1"
                         android:layout_width="96dp"
@@ -275,14 +250,75 @@
                         android:scaleType="centerCrop"
                         android:background="@drawable/rounded_corner_bg"
                         tools:src="@drawable/ic_placeholder" />
-
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
-            <!-- Repita para Badge 2: Herói do Bairro -->
-            <!-- ... (código similar, IDs: imageBadge2, buttonBadgeDetails2;) ... -->
+            <!-- Badge 2 (ADICIONADO) -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardBackgroundColor="@color/white_alpha_05"
+                app:cardCornerRadius="8dp">
 
-            <!-- Próximo Badge e Progresso -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="16dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/badge_level_1"
+                            android:textAppearance="?attr/textAppearanceBodySmall"
+                            android:textColor="@color/primary"
+                            android:layout_marginBottom="4dp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/badge_name_1"
+                            android:textAppearance="?attr/textAppearanceBodyLarge"
+                            android:textStyle="bold"
+                            android:textColor="@android:color/white"
+                            android:layout_marginBottom="4dp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/badge_desc_1"
+                            android:textAppearance="?attr/textAppearanceBodySmall"
+                            android:textColor="@color/primary" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/buttonBadgeDetails2"
+                            style="@style/Widget.Material3.Button.TextButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="@string/view_details"
+                            app:backgroundTint="@color/primary_light"
+                            android:textColor="@android:color/white" />
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/imageBadge2"
+                        android:layout_width="96dp"
+                        android:layout_height="96dp"
+                        android:scaleType="centerCrop"
+                        android:background="@drawable/rounded_corner_bg"
+                        tools:src="@drawable/ic_placeholder" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Próximo Badge -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -296,19 +332,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="8dp"
                 android:orientation="horizontal"
-                android:background="@color/white_alpha_10"
-                android:clipToPadding="false"
-                android:padding="0dp">
+                android:background="@color/white_alpha_10">
 
                 <View
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="60"
                     android:background="@color/primary" />
-
             </LinearLayout>
 
-            <!-- Seção Recompensas -->
+            <!-- Recompensas -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -325,7 +358,6 @@
                 app:cardBackgroundColor="@color/white_alpha_05"
                 app:cardCornerRadius="8dp">
 
-                <!-- Imagem da Recompensa -->
                 <ImageView
                     android:id="@+id/imageReward"
                     android:layout_width="match_parent"
@@ -354,7 +386,6 @@
                         android:layout_height="wrap_content"
                         android:text="@string/reward_desc"
                         android:textAppearance="?attr/textAppearanceBodySmall"
-                        android:textStyle="normal"
                         android:textColor="@color/primary"
                         android:layout_marginBottom="12dp" />
 
@@ -367,14 +398,12 @@
                         app:backgroundTint="@color/primary"
                         android:textColor="@color/background_dark"
                         android:textStyle="bold" />
-
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
-
         </LinearLayout>
     </ScrollView>
 
-    <!-- Footer: Bottom Navigation -->
+    <!-- Bottom Navigation -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigation"
         android:layout_width="match_parent"
@@ -383,8 +412,6 @@
         app:menu="@menu/bottom_nav_menu"
         app:itemRippleColor="@color/primary_light"
         app:labelVisibilityMode="labeled"
-        app:itemTextColor="@color/selector_nav_text_dark"
-        app:itemIconTint="@color/selector_nav_icon_dark"
-        app:selectedItemId="@id/nav_rewards" />  <!-- Rewards selecionado -->
-
+        app:itemTextColor="@color/selector_nav_text"
+        app:itemIconTint="@color/selector_nav_icon" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
