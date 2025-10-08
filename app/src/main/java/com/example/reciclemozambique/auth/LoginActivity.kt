@@ -6,6 +6,7 @@ import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.example.reciclemozambique.R
 import com.example.reciclemozambique.ui.GuideActivity
+import com.example.reciclemozambique.ui.HomeActivity
 
 class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -14,7 +15,7 @@ class LoginActivity : AppCompatActivity() {
 
         // Fluxo simples: ir para a Guide ao clicar em "Log In"
         findViewById<Button>(R.id.loginButton).setOnClickListener {
-            startActivity(Intent(this, GuideActivity::class.java))
+            startActivity(Intent(this, HomeActivity::class.java))
             finish()
         }
     }

@@ -1,18 +1,18 @@
-
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-
+    // Adicione esta linha se ainda não existir, para o Firebase
+    id("com.google.gms.google-services") version "4.4.1" apply false
 }
 
 android {
     namespace = "com.example.reciclemozambique"
-    compileSdk = 36  // Sugestão: Use 34 (estável); mude para 36 se preferir
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.example.reciclemozambique"
         minSdk = 24
-        targetSdk = 36  // Alinhe com compileSdk
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
@@ -30,38 +30,41 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
 
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = "1.8"
     }
 
-    // View Binding
     buildFeatures {
         viewBinding = true
     }
-
+}
 
 dependencies {
+    // Dependências do AndroidX, Material e Navegação (lidas do TOML)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
-    implementation("com.google.android.material:material:1.11.0")  // Remova se libs.material for suficiente
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
-    implementation("com.github.bumptech.glide:glide:4.16.0")
-    implementation("com.google.android.gms:play-services-maps:18.2.0")  // Para SupportMapFragment
-    implementation("com.google.android.gms:play-services-location:21.0.1")  // Para localização (near_me
-    implementation("com.google.android.gms:play-services-maps:18.2.0")
-    implementation("androidx.recyclerview:recyclerview:1.3.2")
-    implementation("com.google.firebase:firebase-auth-ktx:22.3.1")
-    implementation("com.google.firebase:firebase-firestore-ktx:24.10.0")
-    // implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")  // Para async
+    implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(libs.androidx.navigation.ui.ktx)
 
+    // Dependências que você adicionou manualmente (Firebase, Glide, etc.)
+    // Mantenha-as como estavam, mas garanta que não haja duplicatas
+    implementation("com.github.bumptech.glide:glide:4.16.0")
+    implementation("com.google.android.gms:play-services-maps:18.2.0")
+    implementation("com.google.android.gms:play-services-location:21.0.1")
+    implementation("androidx.recyclerview:recyclerview:1.3.2")
+    implementation(platform("com.google.firebase:firebase-bom:32.7.2"))
+    implementation("com.google.firebase:firebase-auth-ktx")
+    implementation("com.google.firebase:firebase-firestore-ktx")
+
+    // Testes
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-}
 }

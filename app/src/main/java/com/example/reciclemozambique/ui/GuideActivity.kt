@@ -8,6 +8,7 @@ import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.example.reciclemozambique.R
 import com.example.reciclemozambique.databinding.ActivityGuideBinding
+import com.example.reciclemozambique.ui.UserProfileActivity
 
 class GuideActivity : AppCompatActivity() {
     private lateinit var binding: ActivityGuideBinding
@@ -74,6 +75,7 @@ class GuideActivity : AppCompatActivity() {
             .into(binding.imageTip3)
     }
 
+
     private fun setupBottomNavigation() {
         binding.bottomNavigation.setOnItemSelectedListener { item ->
             when (item.itemId) {
@@ -82,17 +84,24 @@ class GuideActivity : AppCompatActivity() {
                     finish()
                     true
                 }
-                R.id.nav_guide -> true
+                R.id.nav_guide -> {
+                    // Não faz nada, pois já estamos nesta tela.
+                    true
+                }
                 R.id.nav_agenda -> {
-                    Toast.makeText(this, "Abrindo Agenda...", Toast.LENGTH_SHORT).show()
+                    startActivity(Intent(this, ScheduleCollectionActivity::class.java))
+                    finish()
                     true
                 }
                 R.id.nav_rewards -> {
-                    Toast.makeText(this, "Abrindo Recompensas...", Toast.LENGTH_SHORT).show()
+                    startActivity(Intent(this, RewardsActivity::class.java))
+                    finish()
                     true
                 }
                 R.id.nav_profile -> {
-                    Toast.makeText(this, "Abrindo Perfil...", Toast.LENGTH_SHORT).show()
+                    // **CORRIGIDO**: Sintaxe do Intent ajustada
+                    startActivity(Intent(this, UserProfileActivity::class.java))
+                    finish()
                     true
                 }
                 else -> false
@@ -100,10 +109,10 @@ class GuideActivity : AppCompatActivity() {
         }
     }
 
+    // **CORRIGIDO**: Função movida para dentro da classe
     private fun highlightGuideIcon() {
         val guideItem = binding.bottomNavigation.menu.findItem(R.id.nav_guide)
-        val iconWithBackground =
-            ContextCompat.getDrawable(this, R.drawable.ic_book_with_circle)
-        if (iconWithBackground != null) guideItem.icon = iconWithBackground
+        // Opcional: Para destacar o ícone da tela atual
+        guideItem.isChecked = true
     }
 }

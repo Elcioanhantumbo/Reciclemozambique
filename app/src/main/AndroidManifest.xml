@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- Necessário para carregar imagens remotas (Glide) -->
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <!-- Necessário para carregar imagens remotas (Glide)
+    <uses-permission android:name="android.permission.INTERNET"/>-->
 
     <application
         android:allowBackup="true"
@@ -31,9 +31,19 @@
             android:exported="false"
             android:theme="@style/Theme.RecicleMozambique" />
 
-        <!-- Telas do app -->
+        <activity
+            android:name=".ui.HomeActivity"
+            android:exported="false"
+            android:theme="@style/Theme.RecicleMozambique" />
+
+        <!-- Telas do app que se tornarão Fragments (podem ser removidas se não forem mais usadas como Activities) -->
         <activity
             android:name=".ui.GuideActivity"
+            android:exported="false"
+            android:theme="@style/Theme.RecicleMozambique" />
+
+        <activity
+            android:name=".UserProfileActivity"
             android:exported="false"
             android:theme="@style/Theme.RecicleMozambique" />
 
@@ -47,25 +57,18 @@
             android:exported="false"
             android:theme="@style/Theme.RecicleMozambique" />
 
-        <!-- Nova tela de data/horário -->
+        <!-- Tela de data/horário -->
         <activity
             android:name=".ui.ScheduleDateActivity"
             android:exported="false"
             android:theme="@style/Theme.RecicleMozambique" />
 
-        <!-- Opcional: declare se existirem e forem abertas por Intent -->
         <activity
             android:name=".ui.MapActivity"
             android:exported="false"
             android:theme="@style/Theme.RecicleMozambique" />
         <activity
             android:name=".ui.AgendaActivity"
-            android:exported="false"
-            android:theme="@style/Theme.RecicleMozambique" />
-
-        <!-- Removido o segundo launcher. Se ainda precisar de MainActivity, mantenha sem intent-filter -->
-        <activity
-            android:name=".MainActivity"
             android:exported="false"
             android:theme="@style/Theme.RecicleMozambique" />
 

@@ -9,4 +9,32 @@
         <item name="android:drawableTop">@drawable/ic_recycling</item>
         <item name="android:gravity">center</item>
     </style>
+    <style name="MaterialItemStyle">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">150dp</item>
+        <item name="android:layout_columnWeight">1</item>
+        <item name="android:layout_rowWeight">1</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/bg_material_item</item>
+        <item name="android:textColor">#112112</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:padding">12dp</item>
+    </style>
+
+    <style name="BottomNavItem">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingVertical">6dp</item>
+    </style>
+    <style name="BottomNavTextStyle">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">#6B7280</item> <!-- cinza -->
+        <item name="android:fontFamily">@font/noto_sans</item> <!-- opcional -->
+        <item name="android:textStyle">bold</item>
+        <item name="android:gravity">center</item>
+    </style>
+
 </resources>

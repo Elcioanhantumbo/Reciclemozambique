@@ -6,7 +6,6 @@ import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.reciclemozambique.MainActivity
 import com.example.reciclemozambique.R
 import com.example.reciclemozambique.databinding.ActivityRegisterBinding
 
@@ -50,7 +49,7 @@ class RegisterActivity : AppCompatActivity() {
 
             Toast.makeText(this, "Registering $name as $userType...", Toast.LENGTH_SHORT).show()
 
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
             finish()
         }

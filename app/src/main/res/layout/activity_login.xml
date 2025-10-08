@@ -22,7 +22,6 @@
             android:contentDescription="@string/logo_desc"
             android:scaleType="fitCenter"
             android:src="@drawable/ic_logo" />
-        <!-- Substitua @drawable/ic_logo pela sua imagem local ou use Glide/Picasso para carregar da URL -->
 
         <!-- Título -->
         <TextView

@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 1. Mudei o layout principal para RelativeLayout para ancorar a barra de navegação -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/profileLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F9FAFB">
+
+    <!-- 2. Adicionei um ScrollView para permitir que o conteúdo role -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottomNavContainer"
+        android:clipToPadding="false"
+        android:paddingBottom="16dp">
+
+        <!-- O seu conteúdo original vai aqui dentro -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- ===== Cabeçalho ===== -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="8dp">
+
+                <TextView
+                    android:id="@+id/tvProfileTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Perfil"
+                    android:textColor="#111827"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <ImageButton
+                    android:id="@+id/btnLogout"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_alignParentEnd="true"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:src="@drawable/ic_logout"
+                    app:tint="#111827"
+                    android:contentDescription="Botão de Logout"/>
+            </RelativeLayout>
+
+            <!-- ===== Avatar e informações ===== -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center_horizontal"
+                android:layout_marginTop="16dp">
+
+                <FrameLayout
+                    android:layout_width="128dp"
+                    android:layout_height="128dp">
+
+                    <ImageView
+                        android:id="@+id/imgProfile"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/profile_placeholder"
+                        android:scaleType="centerCrop"
+                        android:background="@drawable/circle_mask"
+                        android:contentDescription="Imagem de perfil do usuário" />
+
+                    <ImageButton
+                        android:id="@+id/btnEditProfile"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:layout_gravity="bottom|end"
+                        android:layout_margin="4dp"
+                        android:backgroundTint="#22C55E"
+                        android:background="@drawable/circle_button_bg"
+                        android:src="@drawable/ic_edit"
+                        app:tint="#FFFFFF"
+                        android:contentDescription="Botão para editar perfil"/>
+                </FrameLayout>
+
+                <TextView
+                    android:id="@+id/tvUserName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Sofia Mendes"
+                    android:textColor="#111827"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="12dp" />
+
+                <TextView
+                    android:id="@+id/tvUserEmail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="sofia.mendes@email.com"
+                    android:textColor="#6B7280"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <!-- ===== Estatísticas ===== -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:baselineAligned="false"
+                android:orientation="horizontal"
+                android:weightSum="3">
+
+                <!-- Pontos -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_stat_card_green"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="12dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Pontos de Reciclagem"
+                        android:textAlignment="center"
+                        android:textColor="#166534"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvRecyclingPoints"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="1,500"
+                        android:textColor="#22C55E"
+                        android:textSize="28sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <!-- Kg Reciclados -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_stat_card_blue"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="12dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Kg Reciclados"
+                        android:textAlignment="center"
+                        android:textColor="#1E3A8A"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvRecycledKg"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="250"
+                        android:textColor="#3B82F6"
+                        android:textSize="28sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <!-- Recolhas Agendadas -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_stat_card_gray"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="12dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Recolhas Agendadas"
+                        android:textAlignment="center"
+                        android:textColor="#6B7280"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvScheduledCollections"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="5"
+                        android:textColor="#111827"
+                        android:textSize="28sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+
+    <!-- ===== Barra inferior ===== -->
+    <!-- 3. Coloquei a barra de navegação fora do ScrollView e ancorei na parte inferior -->
+    <LinearLayout
+        android:id="@+id/bottomNavContainer"
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:layout_alignParentBottom="true"
+        android:background="#CCF9FAFB"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:weightSum="5">
+
+        <!-- Seu código da barra de navegação está correto e permanece o mesmo -->
+        <LinearLayout
+            style="@style/BottomNavItem"
+            android:id="@+id/navMap"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_map"
+                app:tint="#6B7280"/>
+            <TextView
+                style="@style/BottomNavTextStyle"
+                android:text="Mapa"/>
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/BottomNavItem"
+            android:id="@+id/navGuide"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_book"
+                app:tint="#6B7280"/>
+            <TextView
+                style="@style/BottomNavTextStyle"
+                android:text="Guia"/>
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/BottomNavItem"
+            android:id="@+id/navAgenda"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_calendar"
+                app:tint="#6B7280"/>
+            <TextView
+                style="@style/BottomNavTextStyle"
+                android:text="Agenda"/>
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/BottomNavItem"
+            android:id="@+id/navAwards"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_trophy"
+                app:tint="#6B7280"/>
+            <TextView
+                style="@style/BottomNavTextStyle"
+                android:text="Prémios"/>
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/BottomNavItem"
+            android:id="@+id/navProfile"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_user"
+                app:tint="#22C55E"/>
+            <TextView
+                style="@style/BottomNavTextStyle"
+                android:text="Perfil"
+                android:textColor="#22C55E"/>
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>
