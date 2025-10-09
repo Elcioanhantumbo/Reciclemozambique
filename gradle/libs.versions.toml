@@ -1,49 +1,45 @@
 [versions]
-# PLUGINS
-agp = "8.2.2"  # Versão estável do Android Gradle Plugin
-kotlin = "1.9.22" # Versão estável do Kotlin
+agp = "8.6.1"
+kotlin = "2.0.20"
 
-# SDK
 compileSdk = "34"
 minSdk = "24"
 targetSdk = "34"
 
-# ANDROIDX LIBS (Versões estáveis e compatíveis)
-coreKtx = "1.12.0"
-appcompat = "1.6.1"
-activity = "1.8.2"
+coreKtx = "1.13.1"
+appcompat = "1.7.0"
+activity = "1.9.2"
 constraintlayout = "2.1.4"
 navigation = "2.7.7"
+material = "1.12.0"
 
-# MATERIAL DESIGN
-material = "1.11.0"
-
-# TESTES
 junit = "4.13.2"
-junitVersion = "1.1.5"
-espressoCore = "3.5.1"
+junitVersion = "1.2.1"
+espressoCore = "3.6.1"
+inputmapping = "1.1.1-beta"
 
+# NOVO
+osmdroid = "6.1.18"
 
 [libraries]
-# ANDROIDX
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
-androidx-activity = { group = "androidx.activity", name = "activity-ktx", version.ref = "activity" } # Use activity-ktx
+androidx-activity = { group = "androidx.activity", name = "activity-ktx", version.ref = "activity" }
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 
-# MATERIAL
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 
-# NAVIGATION
 androidx-navigation-fragment-ktx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navigation" }
 androidx-navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigation" }
 
-# TESTES
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
+inputmapping = { group = "com.google.android.libraries.play.games", name = "inputmapping", version.ref = "inputmapping" }
 
+# NOVO
+osmdroid = { group = "org.osmdroid", name = "osmdroid-android", version.ref = "osmdroid" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlin-android     = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }

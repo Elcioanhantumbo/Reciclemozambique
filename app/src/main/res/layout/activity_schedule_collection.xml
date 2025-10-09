@@ -1,151 +1,283 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/mainLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#F6F8F6"
-    android:padding="16dp">
+    android:background="@color/background_light">
 
-    <!-- ===== Cabeçalho ===== -->
-    <RelativeLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingVertical="12dp">
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:padding="16dp">
 
-        <ImageButton
-            android:id="@+id/btnBack"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_alignParentStart="true"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:src="@drawable/ic_arrow_forward"
-            app:tint="#112112" />
-
-        <TextView
-            android:id="@+id/tvTitle"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="Schedule Collection"
-            android:textColor="#112112"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-    </RelativeLayout>
+            android:orientation="vertical">
 
-    <!-- ===== Indicadores ===== -->
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginVertical="20dp"
-        android:orientation="horizontal"
-        android:gravity="center">
+            <!-- HERO -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="140dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="0dp"
+                android:layout_marginBottom="8dp">
 
-        <View
-            android:layout_width="32dp"
-            android:layout_height="8dp"
-            android:layout_margin="4dp"
-            android:background="#19E62B"
-            android:backgroundTint="#19E62B"
-            android:backgroundTintMode="src_in"
-            android:clipToOutline="true"
-            android:radius="4dp" />
+                <ImageView
+                    android:id="@+id/heroImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:contentDescription="@string/recycling" />
+            </com.google.android.material.card.MaterialCardView>
 
-        <View
-            android:layout_width="32dp"
-            android:layout_height="8dp"
-            android:layout_margin="4dp"
-            android:background="#3319E62B" />
+            <!-- Step indicator simples -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="8dp"
+                android:orientation="horizontal"
+                android:layout_marginBottom="12dp">
 
-        <View
-            android:layout_width="32dp"
-            android:layout_height="8dp"
-            android:layout_margin="4dp"
-            android:background="#3319E62B" />
-    </LinearLayout>
+                <View android:layout_width="48dp" android:layout_height="8dp" android:background="@color/primary"/>
+                <View android:layout_width="8dp"  android:layout_height="8dp"/>
+                <View android:layout_width="48dp" android:layout_height="8dp" android:background="@color/divider_dark"/>
+                <View android:layout_width="8dp"  android:layout_height="8dp"/>
+                <View android:layout_width="48dp" android:layout_height="8dp" android:background="@color/divider_dark"/>
+            </LinearLayout>
 
-    <!-- ===== Título Principal ===== -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Select Material Type"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="12dp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/select_material_type"
+                android:textStyle="bold"
+                android:textColor="@color/foreground_light"
+                android:textSize="16sp"
+                android:layout_marginBottom="8dp" />
 
-    <!-- ===== Grade de Materiais ===== -->
-    <GridLayout
-        android:id="@+id/gridMaterials"
+            <!-- GRID 2 colunas -->
+            <GridLayout
+                android:id="@+id/gridMaterials"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:columnCount="2"
+                android:useDefaultMargins="true">
+
+                <!-- Card base: usamos stroke como “selecionado” -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardPlastic"
+                    android:layout_width="0dp"
+                    android:layout_height="96dp"
+                    android:layout_columnWeight="1"
+                    app:strokeColor="@color/primary"
+                    app:strokeWidth="0dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/ic_recycling"
+                            app:tint="@color/primary"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:text="@string/plastic"
+                            android:textColor="@color/foreground_light"/>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardGlass"
+                    android:layout_width="0dp"
+                    android:layout_height="96dp"
+                    android:layout_columnWeight="1"
+                    app:strokeColor="@color/primary"
+                    app:strokeWidth="0dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/ic_liquor"
+                            app:tint="@color/primary"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:text="@string/glass"
+                            android:textColor="@color/foreground_light"/>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardPaper"
+                    android:layout_width="0dp"
+                    android:layout_height="96dp"
+                    android:layout_columnWeight="1"
+                    app:strokeColor="@color/primary"
+                    app:strokeWidth="0dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/ic_description"
+                            app:tint="@color/primary"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:text="@string/paper"
+                            android:textColor="@color/foreground_light"/>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardMetal"
+                    android:layout_width="0dp"
+                    android:layout_height="96dp"
+                    android:layout_columnWeight="1"
+                    app:strokeColor="@color/primary"
+                    app:strokeWidth="0dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/ic_magnet"
+                            app:tint="@color/primary"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:text="@string/metal"
+                            android:textColor="@color/foreground_light"/>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardElectronics"
+                    android:layout_width="0dp"
+                    android:layout_height="96dp"
+                    android:layout_columnWeight="1"
+                    app:strokeColor="@color/primary"
+                    app:strokeWidth="0dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/ic_cable"
+                            app:tint="@color/primary"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:text="@string/electronics"
+                            android:textColor="@color/foreground_light"/>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardOther"
+                    android:layout_width="0dp"
+                    android:layout_height="96dp"
+                    android:layout_columnWeight="1"
+                    app:strokeColor="@color/primary"
+                    app:strokeWidth="0dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/ic_more"
+                            app:tint="@color/primary"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:text="@string/other"
+                            android:textColor="@color/foreground_light"/>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+            </GridLayout>
+
+            <!-- Outro (especifique) -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/inputOther"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:visibility="gone"
+                app:startIconDrawable="@drawable/ic_more">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editOther"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/type_other_material_hint"
+                    android:inputType="textCapWords"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Próximo -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnNext"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="96dp"
+                android:text="@string/next"/>
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Bottom nav fixo -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigation"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:columnCount="2"
-        android:rowCount="3"
-        android:alignmentMode="alignMargins"
-        android:columnOrderPreserved="false"
-        android:useDefaultMargins="true">
-
-        <!-- Item: Plastic -->
-        <RadioButton
-            android:id="@+id/rbPlastic"
-            style="@style/MaterialItemStyle"
-            android:text="Plastic"
-            android:button="@null"
-            android:drawableTop="@drawable/ic_recycling" />
-
-        <!-- Item: Glass -->
-        <RadioButton
-            android:id="@+id/rbGlass"
-            style="@style/MaterialItemStyle"
-            android:text="Glass"
-            android:button="@null"
-            android:drawableTop="@drawable/ic_liquor" />
-
-        <!-- Item: Paper -->
-        <RadioButton
-            android:id="@+id/rbPaper"
-            style="@style/MaterialItemStyle"
-            android:text="Paper"
-            android:checked="true"
-            android:button="@null"
-            android:drawableTop="@drawable/ic_description" />
-
-        <!-- Item: Metal -->
-        <RadioButton
-            android:id="@+id/rbMetal"
-            style="@style/MaterialItemStyle"
-            android:text="Metal"
-            android:button="@null"
-            android:drawableTop="@drawable/ic_magnet" />
-
-        <!-- Item: Electronics -->
-        <RadioButton
-            android:id="@+id/rbElectronics"
-            style="@style/MaterialItemStyle"
-            android:text="Electronics"
-            android:button="@null"
-            android:drawableTop="@drawable/ic_cable" />
-
-        <!-- Item: Other -->
-        <RadioButton
-            android:id="@+id/rbOther"
-            style="@style/MaterialItemStyle"
-            android:text="Other"
-            android:button="@null"
-            android:drawableTop="@drawable/ic_more" />
-    </GridLayout>
-
-    <!-- ===== Botão "Next" ===== -->
-    <Button
-        android:id="@+id/btnNext"
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:layout_marginTop="32dp"
-        android:backgroundTint="#19E62B"
-        android:text="Next"
-        android:textColor="#112112"
-        android:textStyle="bold"
-        android:textSize="18sp"
-        android:radius="8dp" />
-</LinearLayout>
+        android:layout_height="72dp"
+        android:layout_gravity="bottom"
+        android:background="@color/background_light"
+        app:menu="@menu/bottom_nav_menu"
+        app:itemIconTint="@color/selector_nav_icon"
+        app:itemTextColor="@color/selector_nav_text"
+        app:labelVisibilityMode="labeled"/>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

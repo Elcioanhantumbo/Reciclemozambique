@@ -7,7 +7,7 @@
     android:background="@color/background_light"
     tools:context=".ui.GuideActivity">
 
-    <!-- AppBar com título e busca -->
+    <!-- AppBar -->
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBar"
         android:layout_width="match_parent"
@@ -28,8 +28,6 @@
                 style="@style/Widget.Material3.Button.IconButton"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
-                android:minWidth="48dp"
-                android:minHeight="48dp"
                 app:icon="@drawable/ic_arrow_back"
                 app:iconTint="?attr/colorOnSurface"
                 app:backgroundTint="@null"
@@ -47,7 +45,7 @@
                 android:layout_marginStart="16dp" />
         </LinearLayout>
 
-        <!-- Barra de Busca -->
+        <!-- Busca -->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/searchLayout"
             android:layout_width="match_parent"
@@ -72,7 +70,7 @@
         </com.google.android.material.textfield.TextInputLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
-    <!-- Conteúdo rolável -->
+    <!-- Conteúdo -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -85,7 +83,7 @@
             android:orientation="vertical"
             android:padding="16dp">
 
-            <!-- Card exemplo: Garrafa PET -->
+            <!-- Card exemplo (tem buttonInstructions e imageItem) -->
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -139,7 +137,6 @@
                             android:layout_marginTop="8dp"
                             app:backgroundTint="@color/primary_light"
                             android:text="@string/disposal_instructions"
-                            android:contentDescription="@string/disposal_instructions"
                             app:icon="@drawable/ic_arrow_forward"
                             app:iconTint="@color/primary"
                             app:iconGravity="end" />
@@ -157,7 +154,7 @@
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
-            <!-- Pontos de coleta próximos -->
+            <!-- Ponto de coleta mais próximo -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -167,77 +164,109 @@
                 android:textColor="?attr/colorOnSurface"
                 android:layout_marginBottom="12dp" />
 
-            <!-- Lista de Pontos -->
-            <LinearLayout
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginBottom="24dp">
+                android:layout_marginBottom="16dp"
+                app:cardBackgroundColor="@color/background_light"
+                app:cardCornerRadius="12dp">
 
-                <!-- Item de ponto de coleta -->
-                <com.google.android.material.card.MaterialCardView
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    app:cardBackgroundColor="@color/background_light"
-                    app:cardCornerRadius="12dp">
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:padding="12dp">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center_vertical"
-                        android:padding="12dp">
-
-                        <com.google.android.material.card.MaterialCardView
-                            android:layout_width="48dp"
-                            android:layout_height="48dp"
-                            app:cardBackgroundColor="@color/primary_light"
-                            app:cardCornerRadius="24dp">
-
-                            <ImageView
-                                android:layout_width="24dp"
-                                android:layout_height="24dp"
-                                android:layout_gravity="center"
-                                android:src="@drawable/ic_place"
-                                android:contentDescription="@string/location_icon"
-                                app:tint="@color/primary" />
-                        </com.google.android.material.card.MaterialCardView>
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:orientation="vertical"
-                            android:layout_marginStart="16dp">
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="@string/ecoponto_central"
-                                android:textAppearance="?attr/textAppearanceBodyMedium"
-                                android:textStyle="bold"
-                                android:textColor="?attr/colorOnSurface" />
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="1.2 km"
-                                android:textAppearance="?attr/textAppearanceBodySmall"
-                                android:textColor="?attr/colorOnSurfaceVariant" />
-                        </LinearLayout>
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        app:cardBackgroundColor="@color/primary_light"
+                        app:cardCornerRadius="24dp">
 
                         <ImageView
                             android:layout_width="24dp"
                             android:layout_height="24dp"
-                            android:src="@drawable/ic_chevron_right"
-                            android:contentDescription="@string/navigate"
-                            app:tint="?attr/colorOnSurfaceVariant" />
-                    </LinearLayout>
-                </com.google.android.material.card.MaterialCardView>
-            </LinearLayout>
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_place"
+                            app:tint="@color/primary" />
+                    </com.google.android.material.card.MaterialCardView>
 
-            <!-- Dicas rápidas -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:layout_marginStart="16dp">
+
+                        <TextView
+                            android:id="@+id/textNearestName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?attr/textAppearanceBodyMedium"
+                            android:textStyle="bold"
+                            android:textColor="?attr/colorOnSurface"
+                            tools:text="EcoPonto Central" />
+
+                        <TextView
+                            android:id="@+id/textNearestDistance"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?attr/textAppearanceBodySmall"
+                            android:textColor="?attr/colorOnSurfaceVariant"
+                            tools:text="1.2 km" />
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_chevron_right"
+                        app:tint="?attr/colorOnSurfaceVariant" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Próxima coleta + contador + notificação -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="@color/background_light"
+                app:cardCornerRadius="12dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:id="@+id/textNextPickup"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?attr/textAppearanceBodyMedium"
+                        android:textStyle="bold"
+                        android:textColor="?attr/colorOnSurface"
+                        tools:text="Próxima coleta: Ter, 10:00" />
+
+                    <TextView
+                        android:id="@+id/textCountdown"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:textAppearance="?attr/textAppearanceBodySmall"
+                        android:textColor="@color/primary"
+                        tools:text="Faltam 01:23:45" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/buttonNotify"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Notificar"
+                        android:layout_marginTop="8dp"
+                        app:backgroundTint="@color/primary" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Dicas rápidas (imageTip1/2/3) -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -245,9 +274,9 @@
                 android:textAppearance="?attr/textAppearanceHeadlineMedium"
                 android:textStyle="bold"
                 android:textColor="?attr/colorOnSurface"
+                android:layout_marginTop="24dp"
                 android:layout_marginBottom="16dp" />
 
-            <!-- TRÊS dicas: imageTip1, imageTip2, imageTip3 -->
             <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -260,7 +289,6 @@
                     android:orientation="horizontal"
                     android:paddingEnd="16dp">
 
-                    <!-- Tip 1 -->
                     <LinearLayout
                         android:layout_width="160dp"
                         android:layout_height="wrap_content"
@@ -273,7 +301,6 @@
                             android:layout_height="160dp"
                             android:scaleType="centerCrop"
                             android:background="@drawable/rounded_corner_bg"
-                            android:contentDescription="@string/tip_wash_packaging"
                             tools:src="@drawable/ic_placeholder" />
 
                         <TextView
@@ -286,7 +313,6 @@
                             android:layout_marginTop="8dp" />
                     </LinearLayout>
 
-                    <!-- Tip 2 -->
                     <LinearLayout
                         android:layout_width="160dp"
                         android:layout_height="wrap_content"
@@ -299,7 +325,6 @@
                             android:layout_height="160dp"
                             android:scaleType="centerCrop"
                             android:background="@drawable/rounded_corner_bg"
-                            android:contentDescription="@string/tip_remove_caps"
                             tools:src="@drawable/ic_placeholder" />
 
                         <TextView
@@ -312,7 +337,6 @@
                             android:layout_marginTop="8dp" />
                     </LinearLayout>
 
-                    <!-- Tip 3 -->
                     <LinearLayout
                         android:layout_width="160dp"
                         android:layout_height="wrap_content"
@@ -324,7 +348,6 @@
                             android:layout_height="160dp"
                             android:scaleType="centerCrop"
                             android:background="@drawable/rounded_corner_bg"
-                            android:contentDescription="@string/tip_crush_bottles"
                             tools:src="@drawable/ic_placeholder" />
 
                         <TextView
@@ -339,6 +362,7 @@
 
                 </LinearLayout>
             </HorizontalScrollView>
+
         </LinearLayout>
     </ScrollView>
 
@@ -353,4 +377,5 @@
         app:labelVisibilityMode="labeled"
         app:itemTextColor="@color/selector_nav_text"
         app:itemIconTint="@color/selector_nav_icon" />
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

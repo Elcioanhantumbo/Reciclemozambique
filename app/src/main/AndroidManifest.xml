@@ -2,8 +2,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- Necessário para carregar imagens remotas (Glide)
-    <uses-permission android:name="android.permission.INTERNET"/>-->
+    <!-- Necessárias para mapas e rede -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <!-- Localização opcional para centralizar no usuário -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <!-- Notificações para lembretes (Android 13+) -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" tools:targetApi="33"/>
 
     <application
         android:allowBackup="true"
@@ -15,7 +23,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RecicleMozambique">
 
-        <!-- Launcher único: Login -->
+        <!-- Launcher -->
         <activity
             android:name=".auth.LoginActivity"
             android:exported="true"
@@ -26,51 +34,42 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".auth.RegisterActivity"
-            android:exported="false"
-            android:theme="@style/Theme.RecicleMozambique" />
+        <!-- Cadastro -->
+        <activity android:name=".auth.RegisterActivity" android:exported="false" />
+
+        <!-- Telas -->
+        <activity android:name=".ui.HomeActivity" android:exported="false" />
+        <activity android:name=".ui.GuideActivity" android:exported="false" />
+        <activity android:name=".ui.UserProfileActivity" android:exported="false" />
+        <activity android:name=".ui.RewardsActivity" android:exported="false" />
+        <activity android:name=".ui.ScheduleCollectionActivity" android:exported="false" />
+        <activity android:name=".ui.ScheduleDateActivity" android:exported="false" />
+        <activity android:name=".ui.MapActivity" android:exported="false" />
+        <activity android:name=".ui.AgendaActivity" android:exported="false" />
+
+        <!-- Facebook Login -->
+        <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id" />
+        <meta-data android:name="com.facebook.sdk.ClientToken"   android:value="@string/facebook_client_token" />
 
         <activity
-            android:name=".ui.HomeActivity"
+            android:name="com.facebook.FacebookActivity"
             android:exported="false"
-            android:theme="@style/Theme.RecicleMozambique" />
-
-        <!-- Telas do app que se tornarão Fragments (podem ser removidas se não forem mais usadas como Activities) -->
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/app_name" />
         <activity
-            android:name=".ui.GuideActivity"
-            android:exported="false"
-            android:theme="@style/Theme.RecicleMozambique" />
+            android:name="com.facebook.CustomTabActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="@string/fb_login_protocol_scheme" />
+            </intent-filter>
+        </activity>
 
-        <activity
-            android:name=".UserProfileActivity"
-            android:exported="false"
-            android:theme="@style/Theme.RecicleMozambique" />
-
-        <activity
-            android:name=".ui.RewardsActivity"
-            android:exported="false"
-            android:theme="@style/Theme.RecicleMozambique" />
-
-        <activity
-            android:name=".ui.ScheduleCollectionActivity"
-            android:exported="false"
-            android:theme="@style/Theme.RecicleMozambique" />
-
-        <!-- Tela de data/horário -->
-        <activity
-            android:name=".ui.ScheduleDateActivity"
-            android:exported="false"
-            android:theme="@style/Theme.RecicleMozambique" />
-
-        <activity
-            android:name=".ui.MapActivity"
-            android:exported="false"
-            android:theme="@style/Theme.RecicleMozambique" />
-        <activity
-            android:name=".ui.AgendaActivity"
-            android:exported="false"
-            android:theme="@style/Theme.RecicleMozambique" />
-
+        <!-- Google Maps (se for usar em alguma tela com SupportMapFragment) -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
     </application>
 </manifest>

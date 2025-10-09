@@ -2,55 +2,46 @@ package com.example.reciclemozambique.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
 import com.example.reciclemozambique.R
 import com.example.reciclemozambique.databinding.ActivityHomeBinding
+import com.google.firebase.auth.FirebaseAuth
 
-class HomeActivity : AppCompatActivity() {
-
+class HomeActivity : BaseBottomActivity() {
     private lateinit var binding: ActivityHomeBinding
+    override val bottomNav get() = binding.bottomNavigation
+    override val selectedItemId: Int? = null   // Home não está no menu
+
+    private val urlCollection = "https://picsum.photos/seed/collection/400/300"
+    private val urlTip = "https://picsum.photos/seed/tip/400/300"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        // Infla o layout (o novo activity_home.xml unificado)
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Define a Toolbar
         setSupportActionBar(binding.toolbar)
-        // Opcional: Remover o título padrão da Toolbar se você já tem um TextView customizado
         supportActionBar?.setDisplayShowTitleEnabled(false)
 
-        // Configura a navegação manual para o BottomNavigationView
-        setupBottomNavigation()
+        wireBottomNav()
+        setGreeting()
+        Glide.with(this).load(urlCollection).placeholder(R.drawable.ic_placeholder).into(binding.imageCollection)
+        Glide.with(this).load(urlTip).placeholder(R.drawable.ic_placeholder).into(binding.imageTip)
+
+        binding.buttonNotifications.setOnClickListener { Toast.makeText(this, R.string.notifications, Toast.LENGTH_SHORT).show() }
+        binding.imageCollection.setOnClickListener { startActivity(Intent(this, ScheduleCollectionActivity::class.java)) }
+        binding.imageTip.setOnClickListener { startActivity(Intent(this, GuideActivity::class.java)) }
     }
 
-    private fun setupBottomNavigation() {
-        binding.bottomNavigation.setOnItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.nav_map -> {
-                    startActivity(Intent(this, MapActivity::class.java))
-                    finish()
-                    true
-                }
-                R.id.nav_guide -> {
-                    startActivity(Intent(this, GuideActivity::class.java))
-                    finish()
-                    true
-                }
-                R.id.nav_agenda -> {
-                    startActivity(Intent(this, AgendaActivity::class.java))
-                    finish()
-                    true
-                }
-                R.id.nav_rewards -> {
-                    startActivity(Intent(this, RewardsActivity::class.java))
-                    finish()
-                    true
-                }
-                else -> false
-            }
-        }
+    private fun setGreeting() {
+        val u = FirebaseAuth.getInstance().currentUser
+        val nome = u?.displayName ?: u?.email ?: ""
+        if (nome.isNotEmpty()) binding.textGreeting.text = getString(R.string.greeting).replace("Sofia", nome)
+        val current = 1200
+        binding.pointsProgressBar.progress = current
+        binding.currentPointsText.text = current.toString()
+        binding.pointsProgressText.text = "$current/2000"
     }
 }

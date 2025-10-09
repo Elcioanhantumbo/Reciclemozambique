@@ -1,4 +1,4 @@
-package com.seuprojeto // Verifique se este é o seu pacote correto
+package com.example.reciclemozambique.ui // Verifique se este é o seu pacote correto
 
 import android.content.Intent
 import android.os.Bundle

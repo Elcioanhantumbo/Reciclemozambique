@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "789583227103",
+    "project_id": "reciclemozambique",
+    "storage_bucket": "reciclemozambique.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:789583227103:android:d3220d129f84dc098a616a",
+        "android_client_info": {
+          "package_name": "com.example.reciclemozambique"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "789583227103-8odj9pjr22ndgdv9oktfjrp1acl98mmk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.reciclemozambique",
+            "certificate_hash": "4863a7615a33def0f48a5517b4474c686f78d14b"
+          }
+        },
+        {
+          "client_id": "789583227103-8tn20oah4b5vje2ktv7g5bb9e87mmtuh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC9PgYahq7voxttMG7fdJtldBOCMLBrPrs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "789583227103-8tn20oah4b5vje2ktv7g5bb9e87mmtuh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

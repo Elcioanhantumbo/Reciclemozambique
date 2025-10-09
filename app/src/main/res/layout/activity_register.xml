@@ -29,7 +29,6 @@
                 android:src="@drawable/ic_arrow_back"
                 app:tint="@color/black" />
 
-
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -40,25 +39,22 @@
                 android:gravity="center"
                 android:textColor="@color/black" />
 
-            <!-- Espaço para balancear o botão de voltar -->
             <View
                 android:layout_width="40dp"
                 android:layout_height="40dp" />
         </LinearLayout>
 
-        <!-- Formulário -->
-
         <!-- Name -->
         <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
-            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
             app:boxStrokeColor="@color/primary"
             app:hintTextColor="@color/text_hint_light">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/inputName"
+                android:id="@+id/editName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/name"
@@ -69,15 +65,15 @@
 
         <!-- Email -->
         <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
-            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
             app:boxStrokeColor="@color/primary"
             app:hintTextColor="@color/text_hint_light">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/inputEmail"
+                android:id="@+id/editEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/email"
@@ -88,16 +84,16 @@
 
         <!-- Password -->
         <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
-            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
             app:boxStrokeColor="@color/primary"
             app:hintTextColor="@color/text_hint_light"
-            app:passwordToggleEnabled="true">
+            app:endIconMode="password_toggle">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/inputPassword"
+                android:id="@+id/editPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/password"
@@ -106,25 +102,25 @@
                 android:backgroundTint="@color/primary_light" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- User Type Spinner -->
-        <TextView
+        <!-- Confirm Password -->
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/user_type"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:layout_marginBottom="4dp" />
+            android:layout_marginBottom="12dp"
+            app:boxStrokeColor="@color/primary"
+            app:hintTextColor="@color/text_hint_light"
+            app:endIconMode="password_toggle">
 
-        <Spinner
-            android:id="@+id/spinnerUserType"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:backgroundTint="@color/primary_light"
-            android:popupBackground="@color/background_light"
-            android:spinnerMode="dropdown"
-            android:layout_marginBottom="16dp"
-            android:paddingLeft="12dp"
-            android:paddingRight="12dp" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editConfirm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/confirm_password_hint"
+                android:inputType="textPassword"
+                android:textColor="@color/black"
+                android:backgroundTint="@color/primary_light" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <!-- Terms Checkbox -->
         <LinearLayout
@@ -153,15 +149,14 @@
 
         <!-- Register Button -->
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/buttonRegister"
+            android:id="@+id/btnCreate"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:text="@string/register"
+            android:textStyle="bold"
             android:textColor="@color/background_dark"
             app:backgroundTint="@color/primary"
-            app:cornerRadius="12dp"
-            android:textStyle="bold" />
-
+            app:cornerRadius="12dp" />
 
         <!-- Footer -->
         <TextView

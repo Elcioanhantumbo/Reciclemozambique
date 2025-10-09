@@ -2,53 +2,80 @@ package com.example.reciclemozambique.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import com.example.reciclemozambique.R
 import com.example.reciclemozambique.databinding.ActivityScheduleCollectionBinding
+import com.google.android.material.card.MaterialCardView
 
-class ScheduleCollectionActivity : AppCompatActivity() {
+class ScheduleCollectionActivity : BaseBottomActivity() {
+
     private lateinit var binding: ActivityScheduleCollectionBinding
-    private var selectedMaterial: String = "paper" // Valor inicial definido como 'paper'
+    override val bottomNav get() = binding.bottomNavigation
+    override val selectedItemId = R.id.nav_agenda
+
+    private var selectedMaterial: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityScheduleCollectionBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Listener para o botão Voltar (ID: btnBack)
-        binding.btnBack.setOnClickListener { // <-- CORRIGIDO de buttonBack para btnBack
-            finish()
+        wireBottomNav()
+        setupCards()
+        binding.btnNext.setOnClickListener { goNext() }
+    }
+
+    /** Visual “selecionado” = borda visível */
+    private fun MaterialCardView.setCheckedState(checked: Boolean) {
+        isChecked = checked
+        strokeWidth = if (checked) resources.getDimensionPixelSize(R.dimen.stroke_2dp) else 0
+    }
+
+    private fun setupCards() = with(binding) {
+        val all = listOf(cardPlastic, cardGlass, cardPaper, cardMetal, cardElectronics, cardOther)
+
+        // Marca como checkáveis via código (evita erros no XML)
+        all.forEach { it.isCheckable = true }
+
+        fun select(card: MaterialCardView, material: String) {
+            all.forEach { it.setCheckedState(it == card) }
+            selectedMaterial = material
+
+            inputOther.error = null
+            inputOther.visibility = if (material == "other") View.VISIBLE else View.GONE
+            if (material == "other") editOther.requestFocus()
         }
 
-        // Listener para o botão Próximo (ID: btnNext)
-        binding.btnNext.setOnClickListener { // <-- CORRIGIDO de buttonNext para btnNext
-            // Primeiro, vamos descobrir qual botão está selecionado
-            selectedMaterial = when {
-                binding.rbPlastic.isChecked -> "plastic"
-                binding.rbGlass.isChecked -> "glass"
-                binding.rbPaper.isChecked -> "paper"
-                binding.rbMetal.isChecked -> "metal"
-                binding.rbElectronics.isChecked -> "electronics"
-                binding.rbOther.isChecked -> "other"
-                else -> "paper" // Padrão
+        cardPlastic.setOnClickListener     { select(cardPlastic,     "plastic") }
+        cardGlass.setOnClickListener       { select(cardGlass,       "glass") }
+        cardPaper.setOnClickListener       { select(cardPaper,       "paper") }
+        cardMetal.setOnClickListener       { select(cardMetal,       "metal") }
+        cardElectronics.setOnClickListener { select(cardElectronics, "electronics") }
+        cardOther.setOnClickListener       { select(cardOther,       "other") }
+
+        // estado padrão
+        cardPaper.performClick()
+    }
+
+    private fun goNext() {
+        val base = selectedMaterial ?: run {
+            Toast.makeText(this, R.string.field_required, Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val finalMaterial = if (base == "other") {
+            val typed = binding.editOther.text?.toString()?.trim().orEmpty()
+            if (typed.isEmpty()) {
+                binding.inputOther.error = getString(R.string.field_required)
+                return
             }
-            Toast.makeText(this, "Selecionado: $selectedMaterial", Toast.LENGTH_SHORT).show()
+            typed
+        } else base
 
-            val intent = Intent(this, ScheduleDateActivity::class.java)
-            intent.putExtra("selectedMaterial", selectedMaterial)
-            startActivity(intent)
-        }
-
-        // Configurar clique para os RadioButtons para que um desmarque os outros
-        val radioButtons = listOf(binding.rbPlastic, binding.rbGlass, binding.rbPaper, binding.rbMetal, binding.rbElectronics, binding.rbOther)
-        radioButtons.forEach { radioButton ->
-            radioButton.setOnClickListener {
-                // Desmarca todos os outros botões quando um é clicado
-                radioButtons.filter { it != radioButton }.forEach { it.isChecked = false }
-                // Garante que o clicado esteja marcado
-                (it as android.widget.RadioButton).isChecked = true
-            }
-        }
+        startActivity(
+            Intent(this, ScheduleDateActivity::class.java)
+                .putExtra("selectedMaterial", finalMaterial)
+        )
     }
 }

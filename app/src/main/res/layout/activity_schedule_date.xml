@@ -1,30 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent"
-    android:orientation="vertical" android:padding="16dp">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_light"
+    android:orientation="vertical"
+    android:padding="16dp">
 
     <TextView
         android:id="@+id/textSelected"
-        android:layout_width="match_parent" android:layout_height="wrap_content"
-        android:textSize="18sp" android:textStyle="bold" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@color/foreground_light"
+        android:paddingBottom="8dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Escolha uma data dentro dos próximos 30 dias."
+        android:textColor="@color/onSurfaceVariant"
+        android:paddingBottom="8dp" />
 
     <DatePicker
         android:id="@+id/datePicker"
-        android:layout_width="wrap_content" android:layout_height="wrap_content"
-        android:calendarViewShown="true" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
     <LinearLayout
-        android:layout_width="match_parent" android:layout_height="wrap_content"
-        android:orientation="horizontal" android:layout_marginTop="16dp">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="16dp">
 
         <Button
             android:id="@+id/buttonBack"
-            android:layout_width="0dp" android:layout_height="wrap_content"
-            android:layout_weight="1" android:text="@string/back" />
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/back" />
 
         <Button
             android:id="@+id/buttonConfirm"
-            android:layout_width="0dp" android:layout_height="wrap_content"
-            android:layout_weight="1" android:text="@string/next" />
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/next" />
     </LinearLayout>
 </LinearLayout>
