@@ -105,6 +105,7 @@
     <string name="electronics">Eletrônicos</string>
     <string name="other">Outro</string>
     <string name="next">Próximo</string>
+    <string name="type_other_material_hint">Especifique o material</string>
 
     <!-- Recompensas -->
     <string name="rewards_title">Histórico de pontos</string>
@@ -118,6 +119,7 @@
     <string name="badge_name_1">Iniciante verde</string>
     <string name="badge_desc_1">Descarte 5 vezes</string>
     <string name="view_details">Ver detalhes</string>
+    <string name="participate">Participar</string>
     <string name="next_badge">Próxima medalha: Campeão da cidade</string>
     <string name="rewards_section_title">Recompensas</string>
     <string name="reward_title">Desconto de 10% em lojas parceiras</string>
@@ -125,12 +127,35 @@
     <string name="redeem">Resgatar</string>
     <string name="desc_back_button">Voltar</string>
 
-    <!-- Facebook Login (preencha no Manifest via @string/…) -->
+    <!-- Conteúdo educativo (RecyclingLearnActivity / BadgeDetailsActivity) -->
+    <string name="learn_title_fallback">Aprenda sobre reciclagem</string>
+    <string name="learn_overview">Entenda por que reciclar reduz o impacto ambiental e mantém a cidade limpa.</string>
+    <string name="learn_howto">Separe por tipo (plástico, vidro, metal, papel), lave embalagens e descarte nos pontos corretos.</string>
+    <string name="learn_tips">Reduza, reutilize e recicle. Prefira retornáveis e envolva vizinhos em mutirões.</string>
+    <string name="learn_back">Voltar para recompensas</string>
+
+    <!-- Cabeçalhos das seções na tela de detalhes da medalha -->
+    <string name="why_this_badge">Por que esta medalha?</string>
+    <string name="how_to_get_badge">Como conquistar esta medalha</string>
+    <string name="recycling_tips">Dicas de reciclagem</string>
+
+    <!-- Textos padrão de detalhes da medalha -->
+    <string name="badge_why_default">Você ganha &quot;%1$s&quot; ao atingir marcos de reciclagem e participação na comunidade.</string>
+    <string name="badge_how_default">Separe corretamente os materiais, agende coletas e conclua descartes confirmados para somar pontos.</string>
+    <string name="badge_tips_default">• Lave as embalagens antes de descartar.\n• Remova rótulos e tampas quando possível.\n• Leve eletrônicos a pontos específicos.\n• Prefira reduzir e reutilizar sempre que puder.</string>
+
+    <!-- Facebook Login -->
     <string name="facebook_app_id">YOUR_FB_APP_ID</string>
     <string name="facebook_client_token">YOUR_FB_CLIENT_TOKEN</string>
     <string name="fb_login_protocol_scheme">fbYOUR_FB_APP_ID</string>
 
-    <string name="type_other_material_hint">Especifique o material</string>
+    <string name="claim_points_title">Creditar pontos</string>
+    <string name="points_hint">Quantidade de pontos</string>
+    <string name="reason_hint">Motivo (ex.: coleta confirmada)</string>
+    <string name="add_points">Adicionar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="points_added_ok">Pontos adicionados!</string>
+
 
     <!-- Observação: o plugin google-services gera automaticamente
          R.string.default_web_client_id a partir do google-services.json. -->

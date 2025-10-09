@@ -7,6 +7,7 @@ import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
 import androidx.work.workDataOf
 import com.example.reciclemozambique.R
+import com.example.reciclemozambique.data.PointsStore
 import com.example.reciclemozambique.databinding.ActivityScheduleDateBinding
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
@@ -28,12 +29,15 @@ class ScheduleDateActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val material = intent.getStringExtra("selectedMaterial") ?: "paper"
-        binding.textSelected.text = getString(R.string.select_material_type) + ": $material"
+        binding.textSelected.text =
+            getString(R.string.select_material_type) + ": " + material.replaceFirstChar { it.titlecase() }
 
-        // Regras de intervalo: hoje … hoje+30
+        // Janela permitida: hoje (00:00) até hoje + 30 dias
         val today = Calendar.getInstance().apply {
-            set(Calendar.HOUR_OF_DAY, 0); set(Calendar.MINUTE, 0)
-            set(Calendar.SECOND, 0); set(Calendar.MILLISECOND, 0)
+            set(Calendar.HOUR_OF_DAY, 0)
+            set(Calendar.MINUTE, 0)
+            set(Calendar.SECOND, 0)
+            set(Calendar.MILLISECOND, 0)
         }
         val max = (today.clone() as Calendar).apply { add(Calendar.DAY_OF_YEAR, 30) }
 
@@ -44,10 +48,10 @@ class ScheduleDateActivity : AppCompatActivity() {
 
         binding.buttonConfirm.setOnClickListener {
             val y = binding.datePicker.year
-            val m = binding.datePicker.month     // 0..11
+            val m = binding.datePicker.month          // 0..11
             val d = binding.datePicker.dayOfMonth
 
-            // Horário padrão 09:00 (ajuste depois quando tiver faixas reais)
+            // Horário padrão 09:00 (poderá virar escolha no futuro)
             val chosen = Calendar.getInstance().apply {
                 set(Calendar.YEAR, y)
                 set(Calendar.MONTH, m)
@@ -58,7 +62,7 @@ class ScheduleDateActivity : AppCompatActivity() {
                 set(Calendar.MILLISECOND, 0)
             }
 
-            // Validações extras (caso OEM ignore min/max do DatePicker)
+            // Validações extras (caso algum OEM ignore min/max)
             if (chosen.before(today)) {
                 toast("Selecione uma data a partir de hoje.")
                 return@setOnClickListener
@@ -68,8 +72,8 @@ class ScheduleDateActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            // Salva no Firestore
             val uid = auth.currentUser?.uid ?: "anon"
+
             val doc = hashMapOf(
                 "uid" to uid,
                 "material" to material,
@@ -78,12 +82,25 @@ class ScheduleDateActivity : AppCompatActivity() {
                 "createdAt" to Timestamp.now()
             )
 
+            // Salva no Firestore
             db.collection("schedules")
                 .add(doc)
                 .addOnSuccessListener {
                     // Agenda lembrete 2h antes
                     scheduleReminder(material, chosen.timeInMillis, minutesBefore = 120)
-                    toast("Agendado para ${d.toString().padStart(2,'0')}/${(m+1).toString().padStart(2,'0')}/$y às 09:00")
+
+                    // Pontos e histórico (aparece em Recompensas)
+                    PointsStore.addPoints(
+                        this,
+                        points = 20,
+                        title = "Agendamento confirmado (${material.lowercase()})"
+                    )
+
+                    toast(
+                        "Agendado para %02d/%02d/%d às 09:00".format(
+                            d, (m + 1), y
+                        )
+                    )
                     finish()
                 }
                 .addOnFailureListener { e ->
@@ -98,7 +115,7 @@ class ScheduleDateActivity : AppCompatActivity() {
 
         val data = workDataOf(
             "title" to "Lembrete de coleta",
-            "text" to "Sua coleta de $material é hoje às 09:00.",
+            "text" to "Sua coleta de $material é hoje às 09:00."
         )
 
         val req = OneTimeWorkRequestBuilder<CollectionReminderWorker>()

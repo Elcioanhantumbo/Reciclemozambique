@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,43 +8,32 @@
     android:background="@color/background_dark"
     tools:context=".ui.RewardsActivity">
 
-    <!-- Header -->
-    <LinearLayout
-        android:id="@+id/header"
+    <!-- AppBar fixo -->
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:padding="16dp"
-        android:background="@color/background_dark">
+        android:background="@color/background_dark"
+        app:liftOnScroll="true">
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/buttonBack"
-            style="@style/Widget.Material3.Button.IconButton"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            app:icon="@drawable/ic_arrow_back"
-            app:iconTint="@android:color/white"
-            app:backgroundTint="@null"
-            android:contentDescription="@string/desc_back" />
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            style="@style/Widget.Material3.Toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/background_dark"
+            android:title="@string/rewards_title"
+            android:titleTextColor="@android:color/white"
+            app:titleCentered="true"
+            app:navigationIcon="@drawable/ic_arrow_back"
+            app:navigationIconTint="@android:color/white"/>
+    </com.google.android.material.appbar.AppBarLayout>
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="@string/rewards_title"
-            android:textAppearance="?attr/textAppearanceHeadlineSmall"
-            android:textStyle="bold"
-            android:textColor="@android:color/white" />
-    </LinearLayout>
-
-    <!-- Conteúdo Principal -->
+    <!-- Conteúdo -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        android:fillViewport="true">
+        android:fillViewport="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -51,34 +41,33 @@
             android:orientation="vertical"
             android:padding="16dp">
 
-            <!-- Card Total de Pontos -->
+            <!-- Total de pontos -->
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="24dp"
+                android:layout_marginBottom="16dp"
                 app:cardBackgroundColor="@color/white_alpha_05"
-                app:cardCornerRadius="8dp"
-                app:cardElevation="0dp">
+                app:cardCornerRadius="12dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:padding="16dp">
+                    android:padding="16dp"
+                    android:gravity="center_vertical">
 
                     <com.google.android.material.card.MaterialCardView
                         android:layout_width="48dp"
                         android:layout_height="48dp"
                         app:cardBackgroundColor="@color/primary_light"
-                        app:cardCornerRadius="8dp">
+                        app:cardCornerRadius="10dp">
 
                         <ImageView
                             android:layout_width="24dp"
                             android:layout_height="24dp"
                             android:layout_gravity="center"
                             android:src="@drawable/ic_toll"
-                            app:tint="@color/primary" />
+                            app:tint="@color/primary"/>
                     </com.google.android.material.card.MaterialCardView>
 
                     <LinearLayout
@@ -92,17 +81,15 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/total_points_title"
-                            android:textAppearance="?attr/textAppearanceBodyMedium"
-                            android:textStyle="bold"
                             android:textColor="@android:color/white"
-                            android:alpha="0.9" />
+                            android:alpha="0.9"/>
 
                         <TextView
+                            android:id="@+id/totalPointsValue"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/total_points_value"
-                            android:textAppearance="?attr/textAppearanceBodySmall"
-                            android:textColor="@color/primary" />
+                            android:textColor="@color/primary"/>
                     </LinearLayout>
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
@@ -112,89 +99,33 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/history_title"
-                android:textAppearance="?attr/textAppearanceHeadlineMedium"
-                android:textStyle="bold"
                 android:textColor="@android:color/white"
-                android:layout_marginBottom="12dp" />
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp"/>
 
             <LinearLayout
+                android:id="@+id/historyContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginBottom="24dp">
+                android:orientation="vertical"/>
 
-                <com.google.android.material.card.MaterialCardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    app:cardBackgroundColor="@color/white_alpha_05"
-                    app:cardCornerRadius="8dp">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center_vertical"
-                        android:padding="12dp">
-
-                        <com.google.android.material.card.MaterialCardView
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            app:cardBackgroundColor="@color/primary_light"
-                            app:cardCornerRadius="8dp">
-
-                            <ImageView
-                                android:layout_width="24dp"
-                                android:layout_height="24dp"
-                                android:layout_gravity="center"
-                                android:src="@drawable/ic_recycling"
-                                app:tint="@color/primary" />
-                        </com.google.android.material.card.MaterialCardView>
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:orientation="vertical"
-                            android:layout_marginStart="16dp">
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="@string/history_plastic"
-                                android:textAppearance="?attr/textAppearanceBodyMedium"
-                                android:textStyle="bold"
-                                android:textColor="@android:color/white"
-                                android:alpha="0.9" />
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="@string/history_date_1"
-                                android:textAppearance="?attr/textAppearanceBodySmall"
-                                android:textColor="@color/primary" />
-                        </LinearLayout>
-                    </LinearLayout>
-                </com.google.android.material.card.MaterialCardView>
-            </LinearLayout>
-
-            <!-- Badges -->
+            <!-- Medalhas -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/badges_title"
-                android:textAppearance="?attr/textAppearanceHeadlineMedium"
-                android:textStyle="bold"
                 android:textColor="@android:color/white"
-                android:layout_marginBottom="12dp" />
+                android:textStyle="bold"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"/>
 
             <!-- Badge 1 -->
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
+                android:layout_marginBottom="12dp"
                 app:cardBackgroundColor="@color/white_alpha_05"
-                app:cardCornerRadius="8dp">
+                app:cardCornerRadius="12dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -209,57 +140,66 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/badge_level_1"
-                            android:textAppearance="?attr/textAppearanceBodySmall"
-                            android:textColor="@color/primary"
-                            android:layout_marginBottom="4dp" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/badge_name_1"
-                            android:textAppearance="?attr/textAppearanceBodyLarge"
-                            android:textStyle="bold"
-                            android:textColor="@android:color/white"
-                            android:layout_marginBottom="4dp" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/badge_desc_1"
-                            android:textAppearance="?attr/textAppearanceBodySmall"
-                            android:textColor="@color/primary" />
-
-                        <com.google.android.material.button.MaterialButton
-                            android:id="@+id/buttonBadgeDetails1"
-                            style="@style/Widget.Material3.Button.TextButton"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:text="@string/view_details"
-                            app:backgroundTint="@color/primary_light"
-                            android:textColor="@android:color/white" />
+                            android:text="@string/badge_level_1"
+                            android:textColor="@color/primary"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/badge_name_1"
+                            android:textColor="@android:color/white"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/badge_desc_1"
+                            android:textColor="@color/primary"/>
+
+                        <!-- Ações -->
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginTop="8dp">
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/buttonBadgeDetails1"
+                                style="@style/Widget.Material3.Button.TextButton"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/view_details"
+                                android:textColor="@android:color/white"/>
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/buttonParticipate1"
+                                style="@style/Widget.Material3.Button.OutlinedButton"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:text="@string/participate"/>
+                        </LinearLayout>
                     </LinearLayout>
 
                     <ImageView
                         android:id="@+id/imageBadge1"
                         android:layout_width="96dp"
                         android:layout_height="96dp"
-                        android:scaleType="centerCrop"
                         android:background="@drawable/rounded_corner_bg"
-                        tools:src="@drawable/ic_placeholder" />
+                        android:scaleType="centerCrop"
+                        tools:src="@drawable/ic_placeholder"/>
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
-            <!-- Badge 2 (ADICIONADO) -->
+            <!-- Badge 2 -->
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
+                android:layout_marginBottom="12dp"
                 app:cardBackgroundColor="@color/white_alpha_05"
-                app:cardCornerRadius="8dp">
+                app:cardCornerRadius="12dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -274,89 +214,95 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/badge_level_1"
-                            android:textAppearance="?attr/textAppearanceBodySmall"
-                            android:textColor="@color/primary"
-                            android:layout_marginBottom="4dp" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/badge_name_1"
-                            android:textAppearance="?attr/textAppearanceBodyLarge"
-                            android:textStyle="bold"
-                            android:textColor="@android:color/white"
-                            android:layout_marginBottom="4dp" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/badge_desc_1"
-                            android:textAppearance="?attr/textAppearanceBodySmall"
-                            android:textColor="@color/primary" />
-
-                        <com.google.android.material.button.MaterialButton
-                            android:id="@+id/buttonBadgeDetails2"
-                            style="@style/Widget.Material3.Button.TextButton"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:text="@string/view_details"
-                            app:backgroundTint="@color/primary_light"
-                            android:textColor="@android:color/white" />
+                            android:text="@string/badge_level_1"
+                            android:textColor="@color/primary"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/badge_name_1"
+                            android:textColor="@android:color/white"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/badge_desc_1"
+                            android:textColor="@color/primary"/>
+
+                        <!-- Ações -->
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginTop="8dp">
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/buttonBadgeDetails2"
+                                style="@style/Widget.Material3.Button.TextButton"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/view_details"
+                                android:textColor="@android:color/white"/>
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/buttonParticipate2"
+                                style="@style/Widget.Material3.Button.OutlinedButton"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:text="@string/participate"/>
+                        </LinearLayout>
                     </LinearLayout>
 
                     <ImageView
                         android:id="@+id/imageBadge2"
                         android:layout_width="96dp"
                         android:layout_height="96dp"
-                        android:scaleType="centerCrop"
                         android:background="@drawable/rounded_corner_bg"
-                        tools:src="@drawable/ic_placeholder" />
+                        android:scaleType="centerCrop"
+                        tools:src="@drawable/ic_placeholder"/>
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
-            <!-- Próximo Badge -->
+            <!-- Próxima medalha -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/next_badge"
-                android:textAppearance="?attr/textAppearanceBodyMedium"
-                android:textStyle="bold"
                 android:textColor="@android:color/white"
-                android:layout_marginBottom="8dp" />
+                android:textStyle="bold"
+                android:layout_marginTop="8dp"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="8dp"
-                android:orientation="horizontal"
                 android:background="@color/white_alpha_10">
-
                 <View
+                    android:id="@+id/nextBadgeProgress"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="60"
-                    android:background="@color/primary" />
+                    android:layout_weight="0"
+                    android:background="@color/primary"/>
             </LinearLayout>
 
-            <!-- Recompensas -->
+            <!-- Recompensa destaque -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/rewards_section_title"
-                android:textAppearance="?attr/textAppearanceHeadlineMedium"
-                android:textStyle="bold"
                 android:textColor="@android:color/white"
-                android:layout_marginTop="24dp"
-                android:layout_marginBottom="12dp" />
+                android:textStyle="bold"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"/>
 
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:cardBackgroundColor="@color/white_alpha_05"
-                app:cardCornerRadius="8dp">
+                app:cardCornerRadius="12dp">
 
                 <ImageView
                     android:id="@+id/imageReward"
@@ -364,7 +310,7 @@
                     android:layout_height="128dp"
                     android:scaleType="centerCrop"
                     android:background="@drawable/rounded_corner_bg"
-                    tools:src="@drawable/ic_placeholder" />
+                    tools:src="@drawable/ic_placeholder"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -376,18 +322,15 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/reward_title"
-                        android:textAppearance="?attr/textAppearanceBodyLarge"
-                        android:textStyle="bold"
                         android:textColor="@android:color/white"
-                        android:layout_marginBottom="4dp" />
+                        android:textStyle="bold"/>
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/reward_desc"
-                        android:textAppearance="?attr/textAppearanceBodySmall"
                         android:textColor="@color/primary"
-                        android:layout_marginBottom="12dp" />
+                        android:layout_marginBottom="8dp"/>
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/buttonRedeem"
@@ -397,9 +340,13 @@
                         android:text="@string/redeem"
                         app:backgroundTint="@color/primary"
                         android:textColor="@color/background_dark"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"/>
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="88dp"/>
         </LinearLayout>
     </ScrollView>
 
@@ -409,9 +356,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
+        android:background="@color/background_dark"
         app:menu="@menu/bottom_nav_menu"
-        app:itemRippleColor="@color/primary_light"
-        app:labelVisibilityMode="labeled"
         app:itemTextColor="@color/selector_nav_text"
-        app:itemIconTint="@color/selector_nav_icon" />
+        app:itemIconTint="@color/selector_nav_icon"
+        app:labelVisibilityMode="labeled"/>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -1,105 +1,137 @@
+// app/src/main/java/com/example/reciclemozambique/ui/RewardsActivity.kt
 package com.example.reciclemozambique.ui
 
-import android.content.Intent
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AlertDialog
 import com.bumptech.glide.Glide
 import com.example.reciclemozambique.R
+import com.example.reciclemozambique.data.PointsStore
 import com.example.reciclemozambique.databinding.ActivityRewardsBinding
-import com.google.android.material.bottomnavigation.BottomNavigationView
 
-class RewardsActivity : AppCompatActivity() {
+class RewardsActivity : BaseBottomActivity() {
     private lateinit var binding: ActivityRewardsBinding
+    override val bottomNav get() = binding.bottomNavigation
+    override val selectedItemId = R.id.nav_rewards
 
-    // URLs das imagens do HTML (carregue com Glide)
-    private val badge1Url = "https://lh3.googleusercontent.com/aida-public/AB6AXuAi2_2AvyRV9Lp6gHrpq-XFzGRJFml3lNkU4PdbzLcqcZ31ftpnl4GTIwVW6Meibyr0Fs1W7zuG4cx3z6UqgTJxSyoeQDmC5QTlq6AgnQi0OIn4xAPceK0OxblKge5AgfJKt8kCJ64XnrP9C_PZVbPKlI63A1NZxj3WTIggEEBq93IWn8gIAMrEitLMVq8EpJ-z24kEq6L_nnmkqg5wF9O0agdYFHhNapMN7ulF9dW9YcasfQJsXdK0WvoDGHGn7TPGjhwLqLyXhO0"
-    private val badge2Url = "https://lh3.googleusercontent.com/aida-public/AB6AXuDH1Y2oG6nY0xNGTBjV9cQ-ZvoEIlS5WVDGHQVHiq6h-7eHxIByVl8NWTiyjzOEXDjqrFO7Y3g5Pzdc4Ev39u8ZrtNW5evgprQFTUAcBnSgqpsaCaGwFRIuRUIIf5QByxZmx7WXFo2SVtirBOA7t0aOTTdChZsFF2kjeGiuPSWoQgWVoMwU_edNWQ-_1vWoANf0FpzWJkIFtsendjIGWRirJWYwpjGfGMQtz3r_31j-wehnFpfGbmYamaK60BTcN_dQc4LhOYSl-ds"
-    private val rewardUrl = "https://lh3.googleusercontent.com/aida-public/AB6AXuDX9p6vE_bFjE7dchXyPVEgrCbQnbKbPF_iUspLxU2VTwcjNNaoIdzZ2lZTkTEMvIR9gX9blyNe3lTE2invTgJoc5pHplYwLLBa9cr7WmykohkCbxiDzFzbuG3mlUQlmmqaL3j3hrlV5R6qROlsFBKJhtU4uMgLudPgXmsgysZysTqTIF0E6h41Eog7JEZjMqZS67MZwYJj2Z5H9Df9nWqemQou-4B_aWfEZeOjtvYE15_SijQn0xBEeFsNkApS_PMopJ5oztmvue0"
+    private val badge1Url = "https://picsum.photos/seed/b1/256"
+    private val badge2Url = "https://picsum.photos/seed/b2/256"
+    private val rewardUrl = "https://picsum.photos/seed/reward/600/300"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRewardsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Carregar imagens com Glide
-        loadImages()
+        setSupportActionBar(binding.toolbar)
+        supportActionBar?.title = getString(R.string.rewards_title)
+        supportActionBar?.setDisplayHomeAsUpEnabled(false)
 
-        // Listeners para botões
-        binding.buttonBack.setOnClickListener {
-            finish()  // Volta para tela anterior (ex: Home)
-        }
-
-        binding.buttonBadgeDetails1.setOnClickListener {
-            // Abra tela de detalhes do badge (crie BadgeDetailsActivity)
-            Toast.makeText(this, "Ver detalhes: Iniciante Verde", Toast.LENGTH_SHORT).show()
-        }
-
-        // Repita para buttonBadgeDetails2
-        // binding.buttonBadgeDetails2.setOnClickListener { ... }
-
-        binding.buttonRedeem.setOnClickListener {
-            // Resgate recompensa (ex: verifique pontos, envie para Firebase)
-            Toast.makeText(this, "Resgatando desconto de 10%...", Toast.LENGTH_SHORT).show()
-            // Exemplo: val intent = Intent(this, RedeemActivity::class.java); startActivity(intent)
-        }
-
-        // Bottom Navigation: Configurar navegação
-        setupBottomNavigation()
+        wireBottomNav()
+        bindUi()
     }
 
-    private fun loadImages() {
-        // Badge 1
-        Glide.with(this)
-            .load(badge1Url)
-            .placeholder(R.drawable.ic_placeholder)
-            .error(R.drawable.ic_placeholder)
-            .into(binding.imageBadge1)
+    private fun bindUi() = with(binding) {
+        val total = PointsStore.totalPoints(this@RewardsActivity)
+        totalPointsValue.text = getString(R.string.total_points_value).replace("1200", total.toString())
 
-        // Badge 2 (adicione ID no XML)
-        Glide.with(this)
-            .load(badge2Url)
-            .placeholder(R.drawable.ic_placeholder)
-            .error(R.drawable.ic_placeholder)
-            .into(binding.imageBadge2)  // Assuma ID no XML
-
-        // Recompensa
-        Glide.with(this)
-            .load(rewardUrl)
-            .placeholder(R.drawable.ic_placeholder)
-            .error(R.drawable.ic_placeholder)
-            .into(binding.imageReward)
-    }
-
-    private fun setupBottomNavigation() {
-        binding.bottomNavigation.setOnItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.nav_map -> {
-                    val intent = Intent(this, MapActivity::class.java)
-                    startActivity(intent)
-                    finish()
-                    true
-                }
-                R.id.nav_guide -> {
-                    val intent = Intent(this, GuideActivity::class.java)
-                    startActivity(intent)
-                    finish()
-                    true
-                }
-                R.id.nav_agenda -> {
-                    val intent = Intent(this, AgendaActivity::class.java)
-                    startActivity(intent)
-                    finish()
-                    true
-                }
-                R.id.nav_rewards -> true  // Já está em Rewards
-                R.id.nav_profile -> {
-                    // Crie ProfileActivity
-                    Toast.makeText(this, "Abrindo Perfil...", Toast.LENGTH_SHORT).show()
-                    true
-                }
-                else -> false
+        val pct = (total % 1000) / 1000f
+        nextBadgeProgress.layoutParams =
+            (nextBadgeProgress.layoutParams as LinearLayout.LayoutParams).apply {
+                weight = (pct * 100).coerceIn(0f, 100f)
             }
+        nextBadgeProgress.requestLayout()
+
+        renderHistory()
+
+        Glide.with(this@RewardsActivity).load(badge1Url).placeholder(R.drawable.ic_placeholder).into(imageBadge1)
+        Glide.with(this@RewardsActivity).load(badge2Url).placeholder(R.drawable.ic_placeholder).into(imageBadge2)
+        Glide.with(this@RewardsActivity).load(rewardUrl).placeholder(R.drawable.ic_placeholder).into(imageReward)
+
+        buttonBadgeDetails1.setOnClickListener {
+            startActivity(
+                android.content.Intent(this@RewardsActivity, RecyclingLearnActivity::class.java)
+                    .putExtra("title", "Iniciante verde")
+                    .putExtra("content",
+                        getString(R.string.badge_why_default, "Iniciante verde") + "\n\n" +
+                                getString(R.string.badge_how_default) + "\n\n" +
+                                getString(R.string.badge_tips_default)
+                    )
+            )
+        }
+        buttonBadgeDetails2.setOnClickListener {
+            startActivity(
+                android.content.Intent(this@RewardsActivity, RecyclingLearnActivity::class.java)
+                    .putExtra("title", "Coleta consciente")
+                    .putExtra("content",
+                        getString(R.string.badge_why_default, "Coleta consciente") + "\n\n" +
+                                getString(R.string.badge_how_default) + "\n\n" +
+                                getString(R.string.badge_tips_default)
+                    )
+            )
+        }
+
+        // >>> NOVO: “Resgatar” = creditar pontos (claim)
+        buttonRedeem.setOnClickListener { showClaimPointsDialog() }
+    }
+
+    private fun showClaimPointsDialog() {
+        val view = layoutInflater.inflate(R.layout.dialog_claim_points, null)
+        val etPoints = view.findViewById<com.google.android.material.textfield.TextInputEditText>(R.id.etPoints)
+        val etReason = view.findViewById<com.google.android.material.textfield.TextInputEditText>(R.id.etReason)
+
+        val dialog = AlertDialog.Builder(this)
+            .setView(view)
+            .setCancelable(true)
+            .create()
+
+        view.findViewById<com.google.android.material.button.MaterialButton>(R.id.btnCancel)
+            .setOnClickListener { dialog.dismiss() }
+
+        view.findViewById<com.google.android.material.button.MaterialButton>(R.id.btnAdd)
+            .setOnClickListener {
+                val pts = etPoints.text?.toString()?.trim()?.toIntOrNull() ?: 0
+                val reason = etReason.text?.toString()?.trim().orEmpty()
+
+                if (pts <= 0) {
+                    etPoints.error = getString(R.string.field_required)
+                    return@setOnClickListener
+                }
+                if (reason.isEmpty()) {
+                    etReason.error = getString(R.string.field_required)
+                    return@setOnClickListener
+                }
+
+                PointsStore.addPoints(this, pts, reason)
+                Toast.makeText(this, getString(R.string.points_added_ok), Toast.LENGTH_SHORT).show()
+                dialog.dismiss()
+
+                // Atualiza total e histórico
+                binding.totalPointsValue.text = getString(R.string.total_points_value)
+                    .replace("1200", PointsStore.totalPoints(this).toString())
+                renderHistory()
+            }
+
+        dialog.show()
+    }
+
+    private fun renderHistory() = with(binding) {
+        historyContainer.removeAllViews()
+        val inflater = LayoutInflater.from(this@RewardsActivity)
+        PointsStore.history(this@RewardsActivity).forEach { h ->
+            val card = inflater.inflate(R.layout.item_points_history, historyContainer, false)
+            card.findViewById<TextView>(R.id.textTitle).text = h.title
+            card.findViewById<TextView>(R.id.textDate).text = h.date
+            card.findViewById<TextView>(R.id.textPoints).apply {
+                text = (if (h.points >= 0) "+" else "") + h.points.toString()
+                setTextColor(getColor(if (h.points >= 0) R.color.primary else R.color.divider_dark))
+            }
+            card.findViewById<ImageView>(R.id.icon).setImageResource(R.drawable.ic_recycling)
+            historyContainer.addView(card)
         }
     }
 }

@@ -46,6 +46,7 @@
         <activity android:name=".ui.ScheduleDateActivity" android:exported="false" />
         <activity android:name=".ui.MapActivity" android:exported="false" />
         <activity android:name=".ui.AgendaActivity" android:exported="false" />
+        <activity android:name=".ui.RecyclingLearnActivity" android:exported="false"/>
 
         <!-- Facebook Login -->
         <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id" />
